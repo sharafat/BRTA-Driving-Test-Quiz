@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BRTA Driving Test Quiz.iml" filepath="$PROJECT_DIR$/BRTA Driving Test Quiz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" filepath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="test_provider">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../BRTA Signs Provider/libs/test/robolectric-1.1-with-dependencies.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../BRTA Signs Provider/libs/test/robolectric-1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../BRTA Signs Provider/libs/test/robolectric-1.1-with-dependencies.jar!/" />
+    </SOURCES>
+  </library>
+</component>

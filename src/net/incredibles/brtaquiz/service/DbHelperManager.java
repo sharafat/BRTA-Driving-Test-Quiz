@@ -1,4 +1,4 @@
-package net.incredibles.brtaquiz.util;
+package net.incredibles.brtaquiz.service;
 
 import android.app.Application;
 import android.database.sqlite.SQLiteOpenHelper;

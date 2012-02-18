@@ -1,10 +1,10 @@
 package net.incredibles.brtaquiz.service;
 
 import android.app.Application;
-import android.database.sqlite.SQLiteOpenHelper;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 
 /**
  * @author sharafat
@@ -13,17 +13,14 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 @Singleton
 public class DbHelperManager {
     @Inject
-    Application application;
+    private static Application application;
 
-    public SQLiteOpenHelper getSQLiteOpenHelper() {
+    public static OrmLiteSqliteOpenHelper getHelper() {
         return OpenHelperManager.getHelper(application, DbHelper.class);
     }
 
-    public static void release(SQLiteOpenHelper sqLiteOpenHelper) {
-        if (sqLiteOpenHelper != null) {
-            OpenHelperManager.releaseHelper();
-            sqLiteOpenHelper = null;
-        }
+    public static void release() {
+        OpenHelperManager.releaseHelper();
     }
 
 }

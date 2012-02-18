@@ -11,11 +11,19 @@ public class User {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(columnName = "reg_no", canBeNull = false, index = true)
+    @DatabaseField(columnName = "reg_no", canBeNull = false, indexName = "index_regNo_pinNo")
     private String regNo;
 
-    @DatabaseField(columnName = "pin_no", canBeNull = false, index = true)
+    @DatabaseField(columnName = "pin_no", canBeNull = false, indexName = "index_regNo_pinNo")
     private String pinNo;
+
+    public User() {
+    }
+
+    public User(String regNo, String pinNo) {
+        this.regNo = regNo;
+        this.pinNo = pinNo;
+    }
 
     public int getId() {
         return id;

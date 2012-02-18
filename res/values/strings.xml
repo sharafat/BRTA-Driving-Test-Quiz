@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BRTA Driving Test Quiz</string>
+
+    <!-- Login -->
+    <string name="reg_no">Registration No.</string>
+    <string name="pin_no">Pin No.</string>
+    <string name="login">Login</string>
+
+
 </resources>

@@ -11,7 +11,7 @@ public class SignSet {
     @DatabaseField(id = true)
     private int id;
 
-    @DatabaseField
+    @DatabaseField(canBeNull = false)
     private String name;
 
     public int getId() {

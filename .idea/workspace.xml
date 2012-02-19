@@ -13,9 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8d22202-ea23-47aa-b072-2ef8e551a546" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/login.xml" afterPath="$PROJECT_DIR$/res/layout/login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/SignSet.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/SignSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelperManager.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelperManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/project.properties" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/project.properties" />
@@ -119,13 +118,11 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/test/net/incredibles/brtaquiz/testhelpers/InjectedTestRunner.java" />
         <option value="$PROJECT_DIR$/test/net/incredibles/brtaquiz/activity/LoginActivityTest.java" />
         <option value="$PROJECT_DIR$/test.properties" />
         <option value="$PROJECT_DIR$/project.properties" />
         <option value="$PROJECT_DIR$/build.xml" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/app/BrtaDrivingTestQuizApplication.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelperManager.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/UserDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/DbConfigUtil.java" />
         <option value="$PROJECT_DIR$/test/net/incredibles/brtaquiz/testhelpers/DbTableTruncator.java" />
@@ -135,6 +132,8 @@
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/login.xml" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/SignSet.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelperManager.java" />
       </list>
     </option>
   </component>
@@ -603,43 +602,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BRTA Driving Test Quiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BRTA Driving Test Quiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BRTA Driving Test Quiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BRTA Driving Test Quiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1200,86 +1163,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/net/incredibles/brtaquiz/testhelpers/DbTableTruncater.java">
+    <entry file="jar://$PROJECT_DIR$/libs/RoboGuice-1.1.2/roboguice-1.1.2-sources.jar!/roboguice/activity/RoboActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="28" selection-start="485" selection-end="485" vertical-scroll-proportion="0.33272395" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/UserDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="25" selection-start="833" selection-end="833" vertical-scroll-proportion="0.725777" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/net/incredibles/brtaquiz/dao/UserDaoImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="28" selection-start="691" selection-end="691" vertical-scroll-proportion="0.14990859" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/net/incredibles/brtaquiz/controller/LoginControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="780" selection-end="780" vertical-scroll-proportion="-0.10968921" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/app/BrtaDrivingTestQuizApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="54" selection-start="620" selection-end="620" vertical-scroll-proportion="0.52102375" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/net/incredibles/brtaquiz/activity/LoginActivityTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1344" selection-end="1344" vertical-scroll-proportion="0.7806216" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/SharedPreferencesWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="207" selection-end="207" vertical-scroll-proportion="0.30164534" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="368" selection-end="368" vertical-scroll-proportion="0.38391224" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/SignSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="157" selection-end="157" vertical-scroll-proportion="0.21937843" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/net/incredibles/brtaquiz/testhelpers/InjectedTestRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="933" selection-end="933" vertical-scroll-proportion="0.49360147" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="681" selection-end="681" vertical-scroll-proportion="0.38391224" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelperManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="0.38391224" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="28" selection-start="697" selection-end="697" vertical-scroll-proportion="0.1773309" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="35" selection-start="1732" selection-end="1732" vertical-scroll-proportion="0.725777">
+        <state line="68" column="19" selection-start="2718" selection-end="2718" vertical-scroll-proportion="0.33272395">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="217" selection-end="217" vertical-scroll-proportion="0.16453382">
+        <state line="4" column="64" selection-start="274" selection-end="305" vertical-scroll-proportion="0.11406844">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/app/BrtaDrivingTestQuizApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="62" selection-start="628" selection-end="628" vertical-scroll-proportion="0.38391224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelperManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="43" selection-start="377" selection-end="377" vertical-scroll-proportion="0.27422303">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="44" selection-start="755" selection-end="755" vertical-scroll-proportion="0.2595978">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="412" selection-end="412" vertical-scroll-proportion="0.30164534">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="246" selection-end="246" vertical-scroll-proportion="0.24680074">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/DbConfigUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="6" selection-start="348" selection-end="348" vertical-scroll-proportion="0.30164534">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/SharedPreferencesWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="207" selection-end="207" vertical-scroll-proportion="-0.31627056">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="31" selection-start="510" selection-end="510" vertical-scroll-proportion="0.16453382">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="13" selection-start="660" selection-end="660" vertical-scroll-proportion="0.095063984">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BRTA Signs Provider/src/net/incredibles/brtaprovider/BrtaSignsProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="506" selection-end="506" vertical-scroll-proportion="-0.35648996">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BRTA Signs Provider/src/net/incredibles/brtaprovider/BrtaSignsContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="19" selection-start="177" selection-end="177" vertical-scroll-proportion="0.21937843">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BRTA Signs Provider/res/raw/db.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.7808989">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../BRTA Signs Provider/src/net/incredibles/brtaprovider/DbHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="30" selection-start="1247" selection-end="1247" vertical-scroll-proportion="-0.27422303">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/UserDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="5" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.7531993">
           <folding />
         </state>
       </provider>

@@ -2,7 +2,6 @@ package net.incredibles.brtaquiz.service;
 
 import android.app.Application;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 
@@ -10,7 +9,6 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
  * @author sharafat
  * @Created 2/15/12 9:30 PM
  */
-@Singleton
 public class DbHelperManager {
     @Inject
     private static Application application;

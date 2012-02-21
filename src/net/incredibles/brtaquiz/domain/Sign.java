@@ -3,6 +3,8 @@ package net.incredibles.brtaquiz.domain;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 
+import java.util.Arrays;
+
 /**
  * @author sharafat
  * @Created 2/15/12 7:58 PM
@@ -21,12 +23,22 @@ public class Sign {
     @DatabaseField(dataType= DataType.BYTE_ARRAY, canBeNull = false)
     private byte[] image;
 
-    public int getId() {
-        return id;
+    public Sign() {
     }
 
-    public void setId(int id) {
+    public Sign(int id) {
         this.id = id;
+    }
+
+    public Sign(int id, SignSet signSet, String description, byte[] image) {
+        this.id = id;
+        this.signSet = signSet;
+        this.description = description;
+        this.image = image;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public SignSet getSignSet() {
@@ -41,7 +53,8 @@ public class Sign {
         return image;
     }
 
-    public void setSignSetAndDescriptionAndImage(SignSet signSet, String description, byte[] image) {
+    public void set(int id, SignSet signSet, String description, byte[] image) {
+        this.id = id;
         this.signSet = signSet;
         this.description = description;
         this.image = image;
@@ -54,5 +67,28 @@ public class Sign {
                 ", signSet=" + signSet +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Sign sign = (Sign) o;
+
+        return id == sign.id;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + signSet.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + Arrays.hashCode(image);
+        return result;
     }
 }

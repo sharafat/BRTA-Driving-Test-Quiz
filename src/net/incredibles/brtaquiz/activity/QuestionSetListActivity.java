@@ -24,17 +24,20 @@ import static net.incredibles.brtaquiz.controller.QuestionSetListController.Ques
  * @Created 2/16/12 6:09 PM
  */
 public class QuestionSetListActivity extends RoboListActivity {
-    static final String KEY_SELECTED_SIGN_SET = "sign_set";
-
     @Inject
     private QuestionSetListController questionSetListController;
 
     private List<QuestionSet> questionSets;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_set_list);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         //TODO: use AsyncTask for the followings
         questionSets = questionSetListController.getQuestionSets();
         setListAdapter(new QuestionSetListAdapter(this, questionSets));
@@ -42,16 +45,9 @@ public class QuestionSetListActivity extends RoboListActivity {
 
     @Override
     protected void onListItemClick(ListView listView, View view, int position, long id) {
-        QuestionSet selectedQuestionSet = questionSets.get(position);
-
-        if (selectedQuestionSet.isTaken()) {
-            //TODO: Show result summary
-        } else {
-            Intent intent = new Intent();
-            intent.setClass(this, TestSummaryActivity.class);
-            intent.putExtra(KEY_SELECTED_SIGN_SET, selectedQuestionSet.getSignSet());
-            startActivity(intent);
-        }
+        questionSetListController.selectQuestionSet(questionSets.get(position));
+        startActivity(new Intent(this, QuestionActivity.class));
+        finish();
     }
 
 
@@ -70,16 +66,23 @@ public class QuestionSetListActivity extends RoboListActivity {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.question_set_list_entry, null);
 
-            ImageView imageView = (ImageView) convertView.findViewById(R.id.taken_image);
-            TextView textView = (TextView) convertView.findViewById(R.id.sign_set_name);
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.complete_icon);
+            TextView questionSetNameTextView = (TextView) convertView.findViewById(R.id.question_set_name_text_view);
+            TextView questionSetDetailsTextView = (TextView) convertView.findViewById(R.id.question_set_details);
 
             QuestionSet questionSet = questionSets.get(position);
-            textView.setText(questionSet.getSignSet().getName());
-            if (questionSet.isTaken()) {
-                imageView.setImageResource(R.drawable.ic_test_taken);
+            questionSetNameTextView.setText(questionSet.getSignSet().getName());
+            questionSetDetailsTextView.setText(getQuestionSetDetailsText(questionSet));
+            if (questionSet.isComplete()) {
+                imageView.setImageResource(R.drawable.ic_test_complete);
             }
 
             return convertView;
+        }
+
+        private String getQuestionSetDetailsText(QuestionSet questionSet) {
+            return context.getString(R.string.questions) + " " + questionSet.getTotalQuestions() + "   "
+                    + context.getString(R.string.answered) + " " + questionSet.getAnswered();
         }
     }
 

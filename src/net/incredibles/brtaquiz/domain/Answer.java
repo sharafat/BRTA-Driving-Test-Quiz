@@ -8,11 +8,22 @@ import com.j256.ormlite.field.DatabaseField;
  */
 public class Answer {
 
+    @DatabaseField(generatedId = true)
+    private int id;
+
     @DatabaseField(foreign = true, canBeNull = false, index = true)
     private Question question;
 
-    @DatabaseField(foreign = true, canBeNull = false)
+    @DatabaseField(columnName = "answer_sign_id", foreign = true, canBeNull = false)
     private Sign answer;
+
+    public Answer() {
+    }
+
+    public Answer(Question question, Sign answer) {
+        this.question = question;
+        this.answer = answer;
+    }
 
     public Question getQuestion() {
         return question;
@@ -30,7 +41,8 @@ public class Answer {
     @Override
     public String toString() {
         return "Answer{" +
-                "question=" + question +
+                "id=" + id +
+                ", question=" + question +
                 ", answer=" + answer +
                 '}';
     }

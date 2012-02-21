@@ -9,6 +9,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.QuestionSetList"/>
+        <activity android:name=".activity.QuestionSetListActivity"/>
+        <activity android:name=".activity.QuestionActivity"/>
+        <activity android:name=".activity.ResultActivity"/>
+
+        <provider android:name="net.incredibles.brtaprovider.BrtaSignsProvider"
+                  android:authorities="net.incredibles.brtaprovider"
+                  android:readPermission="net.incredibles.brtaprovider.READ_BRTA_SIGNS"/>
     </application>
 </manifest>

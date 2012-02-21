@@ -17,6 +17,9 @@ public class Session extends SharedPreferencesWrapper {
     private static final String SHARED_PREF_FILE_NAME = "session";
 
     private User loggedInUser;
+    private int currentQuestionSerial;
+    private int currentQuestionId;
+    private int currentQuestionSetId;
 
     @Inject
     public Session(Application application) {
@@ -26,8 +29,8 @@ public class Session extends SharedPreferencesWrapper {
     public User getLoggedInUser() {
         if (loggedInUser == null) {
             loggedInUser = new User();
-            loggedInUser.setId(get(USER_ID, 0));
-            loggedInUser.setRegNoAndPinNo(get(REG_NO, ""), get(PIN_NO, ""));
+            loggedInUser.setId(get(LOGGED_IN_USER_ID, 0));
+            loggedInUser.setRegNoAndPinNo(get(LOGGED_IN_USER_REG_NO, ""), get(LOGGED_IN_USER_PIN_NO, ""));
         }
 
         return loggedInUser;
@@ -36,15 +39,56 @@ public class Session extends SharedPreferencesWrapper {
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
 
-        set(USER_ID, loggedInUser.getId());
-        set(REG_NO, loggedInUser.getRegNo());
-        set(PIN_NO, loggedInUser.getPinNo());
+        set(LOGGED_IN_USER_ID, loggedInUser.getId());
+        set(LOGGED_IN_USER_REG_NO, loggedInUser.getRegNo());
+        set(LOGGED_IN_USER_PIN_NO, loggedInUser.getPinNo());
+    }
+
+    public int getCurrentQuestionSerial() {
+        if (currentQuestionSerial == 0) {
+            currentQuestionSerial = get(CURRENT_QUESTION_SERIAL, 0);
+        }
+
+        return currentQuestionSerial;
+    }
+
+    public int getCurrentQuestionId() {
+        if (currentQuestionId == 0) {
+            currentQuestionId = get(CURRENT_QUESTION_ID, 0);
+        }
+
+        return currentQuestionId;
+    }
+
+    public void setCurrentQuestionIdAndSerial(int questionId, int serial) {
+        currentQuestionId = questionId;
+        currentQuestionSerial = serial;
+
+        set(CURRENT_QUESTION_ID, questionId);
+        set(CURRENT_QUESTION_SERIAL, serial);
+    }
+
+    public int getCurrentQuestionSetId() {
+        if (currentQuestionSetId == 0) {
+            currentQuestionSetId = get(CURRENT_QUESTION_SET_ID, 0);
+        }
+
+        return currentQuestionSetId;
+    }
+
+    public void setCurrentQuestionSetId(int questionSetId) {
+        this.currentQuestionSetId = questionSetId;
+
+        set(CURRENT_QUESTION_SET_ID, questionSetId);
     }
 
     interface SessionKeys {
-        String USER_ID = "user_id";
-        String REG_NO = "reg_no";
-        String PIN_NO = "pin_no";
+        String LOGGED_IN_USER_ID = "user_id";
+        String LOGGED_IN_USER_REG_NO = "reg_no";
+        String LOGGED_IN_USER_PIN_NO = "pin_no";
+        String CURRENT_QUESTION_SERIAL = "curr_ques_serial";
+        String CURRENT_QUESTION_ID = "curr_ques_id";
+        String CURRENT_QUESTION_SET_ID = "curr_ques_set_id";
     }
 
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+    <include layout="@layout/prev_next_navigation"
+             android:id="@+id/prev_next_navigation"/>
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/prev_next_navigation"
+            android:fillViewport="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp">
+
+                <TextView
+                        android:id="@+id/question_set_name_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/time_remaining_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="right"
+                        android:paddingLeft="10dp"
+                        android:text="00:00:00"/>
+
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/question_text_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"/>
+
+            <ImageView
+                    android:id="@+id/sign_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10dp"/>
+
+            <RadioGroup
+                    android:id="@+id/answers_radio_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

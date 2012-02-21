@@ -1,5 +1,5 @@
 #
-# generated on 2012/02/15 09:17:27
+# generated on 2012/02/21 09:08:55
 #
 # --table-start--
 dataClass=net.incredibles.brtaquiz.domain.SignSet
@@ -11,6 +11,7 @@ id=true
 # --field-end--
 # --field-start--
 fieldName=name
+canBeNull=false
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -54,13 +55,13 @@ generatedId=true
 fieldName=regNo
 columnName=reg_no
 canBeNull=false
-indexName=user_reg_no_idx
+indexName=index_regNo_pinNo
 # --field-end--
 # --field-start--
 fieldName=pinNo
 columnName=pin_no
 canBeNull=false
-indexName=user_pin_no_idx
+indexName=index_regNo_pinNo
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -86,7 +87,15 @@ foreign=true
 indexName=question_sign_idx
 # --field-end--
 # --field-start--
+fieldName=signSet
+columnName=sign_set_id
+canBeNull=false
+foreign=true
+indexName=question_sign_set_id_idx
+# --field-end--
+# --field-start--
 fieldName=markedSign
+columnName=marked_sign_id
 foreign=true
 # --field-end--
 # --table-fields-end--
@@ -97,6 +106,10 @@ dataClass=net.incredibles.brtaquiz.domain.Answer
 tableName=answer
 # --table-fields-start--
 # --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
 fieldName=question
 canBeNull=false
 foreign=true
@@ -104,6 +117,7 @@ indexName=answer_question_idx
 # --field-end--
 # --field-start--
 fieldName=answer
+columnName=answer_sign_id
 canBeNull=false
 foreign=true
 # --field-end--

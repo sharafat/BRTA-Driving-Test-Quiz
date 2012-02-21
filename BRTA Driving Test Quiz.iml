@@ -33,6 +33,8 @@
     <orderEntry type="library" scope="TEST" name="junit-4.10" level="application" />
     <orderEntry type="library" scope="TEST" name="test_quiz" level="project" />
     <orderEntry type="library" name="libs_quiz" level="project" />
+    <orderEntry type="library" name="libs_provider" level="project" />
+    <orderEntry type="module" module-name="BRTA Signs Provider" />
     <orderEntry type="jdk" jdkName="Android 1.6 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

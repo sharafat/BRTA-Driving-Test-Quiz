@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.incredibles.brtaquiz.dao.UserDao;
 import net.incredibles.brtaquiz.domain.User;
+import net.incredibles.brtaquiz.service.QuizManager;
 import net.incredibles.brtaquiz.service.Session;
 
 import java.sql.SQLException;
@@ -18,6 +19,8 @@ public class LoginController {
     private UserDao userDao;
     @Inject
     private Session session;
+    @Inject
+    private QuizManager quizManager;
 
     public boolean login(String regNo, String pinNo) {
         User user = retrieveUser(regNo, pinNo);
@@ -42,6 +45,10 @@ public class LoginController {
         } catch (SQLException e) {
             throw new RuntimeException("Cannot create user in database. Application cannot continue.", e);
         }
+    }
+
+    public void prepareQuiz() {
+        quizManager.prepareQuiz();
     }
 
     UserDao getUserDao() {

@@ -37,7 +37,7 @@ public class LoginActivityTest {
         ShadowActivity shadowActivity = shadowOf(loginActivity);
         Intent startedIntent = shadowActivity.getNextStartedActivity();
         ShadowIntent shadowIntent = shadowOf(startedIntent);
-        assertThat(shadowIntent.getComponent().getClassName(), equalTo(QuestionSetList.class.getName()));
+        assertThat(shadowIntent.getComponent().getClassName(), equalTo(QuestionSetListActivity.class.getName()));
     }
 
 }

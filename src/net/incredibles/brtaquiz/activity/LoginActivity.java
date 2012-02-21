@@ -40,7 +40,9 @@ public class LoginActivity extends RoboActivity {
                 //TODO: Use Loading progress dialog
                 //TODO: Login always succeeds for now. Change the logic to handle login failure.
                 loginController.login(regNoInput.getText().toString(), pinNoInput.getText().toString());
-                startActivity(new Intent(LoginActivity.this, QuestionSetList.class));
+                loginController.prepareQuiz();
+                startActivity(new Intent(LoginActivity.this, QuestionSetListActivity.class));
+                finish();
             }
         });
     }

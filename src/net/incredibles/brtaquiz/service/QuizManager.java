@@ -74,23 +74,23 @@ public class QuizManager {
     }
 
     public Question currentQuestion() {
-        Question currentQuestion = getQuestionWithAnswers(session.getCurrentQuestionId());
-        currentQuestion.setSerialNoInQuestionSet(session.getCurrentQuestionSerial());
-        return currentQuestion;
+        return setAnswersAndSerial(getCurrentQuestion(), session.getCurrentQuestionSerial());
     }
 
     public Question nextQuestion() {
-        Question question = getQuestionWithAnswers(questionDao.getNextQuestion(currentQuestion()));
-        question.setSerialNoInQuestionSet(session.getCurrentQuestionSerial() + 1);
-        session.setCurrentQuestionIdAndSerial(question.getId(), question.getSerialNoInQuestionSet());
-        return question;
+        return setAnswersAndSerial(questionDao.getNextQuestion(getCurrentQuestion()),
+                session.getCurrentQuestionSerial() + 1);
     }
 
     public Question previousQuestion() {
-        Question question = getQuestionWithAnswers(questionDao.getPreviousQuestion(currentQuestion()));
-        question.setSerialNoInQuestionSet(session.getCurrentQuestionSerial() - 1);
-        session.setCurrentQuestionIdAndSerial(question.getId(), question.getSerialNoInQuestionSet());
-        return question;
+        return setAnswersAndSerial(questionDao.getPreviousQuestion(getCurrentQuestion()),
+                session.getCurrentQuestionSerial() - 1);
+    }
+
+    public Question jumpToQuestion(int questionSerial) {    //questionSerial starts from 1
+        Question currentQuestion = currentQuestion();
+        return setAnswersAndSerial(questionDao.getQuestionBySerial(
+                currentQuestion.getUser(), currentQuestion.getSignSet(), questionSerial), questionSerial);
     }
 
     public boolean isFirstQuestion(Question question) {
@@ -105,6 +105,11 @@ public class QuizManager {
         return questionDao.getUnansweredQuestions(session.getLoggedInUser()).isEmpty();
     }
 
+    public int getQuestionCountInCurrentQuestionSet() {
+        return questionDao.getQuestionCountByQuestionSet(session.getLoggedInUser(),
+                new SignSet(session.getCurrentQuestionSetId()));
+    }
+
     public Map<SignSet, Integer> getQuestionSetsWithQuestionCount() {
         return questionDao.getQuestionSetsWithQuestionCount(session.getLoggedInUser());
     }
@@ -117,25 +122,26 @@ public class QuizManager {
         saveMarkedAnswerToDatabase(new Sign(signId));
     }
 
-    private void saveMarkedAnswerToDatabase(Sign markedSign) {
-        Question currentQuestion = currentQuestion();
-        currentQuestion.setMarkedSign(markedSign);
-        try {
-            questionDao.save(currentQuestion);
-        } catch (SQLException e) {
-            throw new RuntimeException("Cannot save marked answer in database. Application cannot continue.", e);
-        }
-    }
-
     public void unMarkAnswer() {
         saveMarkedAnswerToDatabase(null);
     }
 
-    private Question getQuestionWithAnswers(int questionId) {
-        return getQuestionWithAnswers(questionDao.getById(questionId));
+    private Question getCurrentQuestion() {
+        return getQuestion(session.getCurrentQuestionId());
     }
 
-    private Question getQuestionWithAnswers(Question question) {
+    private Question getQuestion(int questionId) {
+        return questionDao.getById(questionId);
+    }
+
+    private Question setAnswersAndSerial(Question question, int serial) {
+        question = setAnswers(question);
+        question.setSerialNoInQuestionSet(serial);
+        session.setCurrentQuestionIdAndSerial(question.getId(), serial);
+        return question;
+    }
+
+    private Question setAnswers(Question question) {
         if (question.getAnswers() == null) {
             question.setAnswers(getAnswers(question));
         }
@@ -185,9 +191,30 @@ public class QuizManager {
         answers.add(new Random().nextInt(alternateAnswersPerQuestion + 1), actualAnswer);
     }
 
+    private void saveQuestionInDatabase(Sign sign) {
+        User loggedInUser = session.getLoggedInUser();
+
+        Question question = new Question(loggedInUser, sign, sign.getSignSet());
+        try {
+            questionDao.save(question);
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot create Question in database. Application cannot continue.", e);
+        }
+    }
+
     private void saveAnswersToDatabase(List<Answer> answers) throws SQLException {
         for (Answer answer : answers) {
             answerDao.save(answer);
+        }
+    }
+
+    private void saveMarkedAnswerToDatabase(Sign markedSign) {
+        Question currentQuestion = currentQuestion();
+        currentQuestion.setMarkedSign(markedSign);
+        try {
+            questionDao.save(currentQuestion);
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot save marked answer in database. Application cannot continue.", e);
         }
     }
 
@@ -196,6 +223,14 @@ public class QuizManager {
             signSetDao.saveSignSetList(getSignSetsFromBrtaSignsProvider());
         } catch (SQLException e) {
             throw new RuntimeException("Cannot create SignSet in database. Application cannot continue.", e);
+        }
+    }
+
+    private void cacheSignToLocalDatabase(Sign sign) {
+        try {
+            signDao.save(sign);
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot create Sign in database. Application cannot continue.", e);
         }
     }
 
@@ -213,25 +248,6 @@ public class QuizManager {
         }
 
         return signSets;
-    }
-
-    private void cacheSignToLocalDatabase(Sign sign) {
-        try {
-            signDao.save(sign);
-        } catch (SQLException e) {
-            throw new RuntimeException("Cannot create Sign in database. Application cannot continue.", e);
-        }
-    }
-
-    private void saveQuestionInDatabase(Sign sign) {
-        User loggedInUser = session.getLoggedInUser();
-
-        Question question = new Question(loggedInUser, sign, sign.getSignSet());
-        try {
-            questionDao.save(question);
-        } catch (SQLException e) {
-            throw new RuntimeException("Cannot create Question in database. Application cannot continue.", e);
-        }
     }
 
 }

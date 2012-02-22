@@ -24,8 +24,8 @@ import java.util.List;
  * @Created 2/19/12 10:36 PM
  */
 public class QuestionActivity extends RoboActivity {
-    @InjectView(R.id.question_set_name_text_view)
-    private TextView questionSetNameTextView;
+    @InjectView(R.id.question_set_details_text_view)
+    private TextView questionSetDetailsTextView;
     @InjectView(R.id.time_remaining_text_view)
     private TextView timeRemainingTextView;
     @InjectView(R.id.question_text_view)
@@ -40,6 +40,8 @@ public class QuestionActivity extends RoboActivity {
     private Button nextBtn;
     @InjectResource(R.string.what_is_the_following_sign)
     private String questionText;
+    @InjectResource(R.string.questions)
+    private String questions;
 
     @Inject
     private QuestionController questionController;
@@ -76,7 +78,7 @@ public class QuestionActivity extends RoboActivity {
         previouslySelectedRadioButton = null;
 
         Question question = questionController.getQuestion();
-        displayQuestionSetName(question);
+        displayQuestionSetDetails(question);
         displayQuestionWithSerial(question);
         displaySignImage(question);
         displayAnswers(question);
@@ -84,8 +86,9 @@ public class QuestionActivity extends RoboActivity {
         preparePreviousAndNextButtons();
     }
 
-    private void displayQuestionSetName(Question question) {
-        questionSetNameTextView.setText(question.getSignSet().getName());
+    private void displayQuestionSetDetails(Question question) {
+        questionSetDetailsTextView.setText(question.getSignSet().getName()
+                + " (" + questionController.getNoOfQuestionsInCurrentQuestionSet() + " " + questions + ")");
     }
 
     private void displayQuestionWithSerial(Question question) {

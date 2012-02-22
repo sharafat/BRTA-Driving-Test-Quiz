@@ -81,7 +81,7 @@ public class QuestionSetListActivity extends RoboListActivity {
             convertView = layoutInflater.inflate(R.layout.question_set_list_entry, null);
 
             ImageView imageView = (ImageView) convertView.findViewById(R.id.complete_icon);
-            TextView questionSetNameTextView = (TextView) convertView.findViewById(R.id.question_set_name_text_view);
+            TextView questionSetNameTextView = (TextView) convertView.findViewById(R.id.question_set_details_text_view);
             TextView questionSetDetailsTextView = (TextView) convertView.findViewById(R.id.question_set_details);
 
             QuestionSet questionSet = questionSets.get(position);

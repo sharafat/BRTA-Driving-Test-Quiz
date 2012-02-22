@@ -61,7 +61,8 @@ public class TimerService extends RoboService {
 
         serviceMessenger = new Messenger(new IncomingHandler());
         notification = new Notification(R.drawable.ic_launcher, notificationTickerText, System.currentTimeMillis());
-        pendingIntentForNotification = PendingIntent.getActivity(this, 0, new Intent(this, QuestionActivity.class), 0);
+        pendingIntentForNotification = PendingIntent.getActivity(this, 0,
+                new Intent(this, QuestionActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
         foreGroundServiceCompat = new ForeGroundServiceCompat(this);
 
         long testDuration = getTestDuration();

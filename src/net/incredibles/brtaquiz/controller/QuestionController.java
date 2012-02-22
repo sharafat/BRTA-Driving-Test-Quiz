@@ -30,6 +30,10 @@ public class QuestionController {
         return quizManager.isAllQuestionsAnswered();
     }
 
+    public int getNoOfQuestionsInCurrentQuestionSet() {
+        return quizManager.getQuestionCountInCurrentQuestionSet();
+    }
+
     public void nextQuestion() {
         quizManager.nextQuestion();
     }

@@ -26,7 +26,7 @@
                     android:paddingBottom="20dp">
 
                 <TextView
-                        android:id="@+id/question_set_name_text_view"
+                        android:id="@+id/question_set_details_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 

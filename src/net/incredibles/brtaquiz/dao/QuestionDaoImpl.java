@@ -131,6 +131,20 @@ public class QuestionDaoImpl implements QuestionDao {
     }
 
     @Override
+    public Question getQuestionBySerial(User user, SignSet signSet, long serial) {
+        try {
+            return questionDao.query(questionDao.queryBuilder().offset(serial - 1).limit(1L)
+                    .where().eq("user_id", user.getId()).and().eq("sign_set_id", signSet.getId())
+                    .prepare()
+            ).get(0);
+        } catch (SQLException e) {
+            LOG.error("Query exception", e);
+        }
+
+        return null;
+    }
+
+    @Override
     public List<Question> getUnansweredQuestions(User user) {
         try {
             return questionDao.query(questionDao.queryBuilder()
@@ -139,6 +153,21 @@ public class QuestionDaoImpl implements QuestionDao {
             LOG.error("Query exception", e);
             return null;
         }
+    }
+
+    @Override
+    public int getQuestionCountByQuestionSet(User user, SignSet signSet) {
+        String query = "SELECT count(id) AS _count FROM question WHERE user_id = ? AND sign_set_id = ?";
+
+        try {
+            String result = questionDao.queryRaw(query, Integer.toString(user.getId()), Integer.toString(signSet.getId()))
+                    .getResults().get(0)[0];
+            return Integer.parseInt(result);
+        } catch (SQLException e) {
+            LOG.error("Query exception", e);
+        }
+
+        return 0;
     }
 
     @Override

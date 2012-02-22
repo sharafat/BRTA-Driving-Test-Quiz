@@ -26,7 +26,11 @@ public interface QuestionDao {
 
     Question getPreviousQuestion(Question question);
 
+    Question getQuestionBySerial(User user, SignSet signSet, long serial);
+
     List<Question> getUnansweredQuestions(User user);
+
+    int getQuestionCountByQuestionSet(User user, SignSet signSet);
 
     Map<SignSet, Integer> getQuestionSetsWithQuestionCount(User user);
 

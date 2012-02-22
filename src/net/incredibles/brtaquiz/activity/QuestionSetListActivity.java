@@ -1,5 +1,6 @@
 package net.incredibles.brtaquiz.activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,21 +34,21 @@ public class QuestionSetListActivity extends RoboListActivity {
     private TextView timeRemainingTextView;
 
     private List<QuestionSet> questionSets;
-    private Handler remainingTimeDisplayUpdateHandler;
+    private Handler remainingTimeUpdateHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_set_list);
 
-        remainingTimeDisplayUpdateHandler = new RemainingTimeDisplayUpdateHandler(timeRemainingTextView);
+        remainingTimeUpdateHandler = new RemainingTimeUpdateHandler(this, timeRemainingTextView);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        TimerServiceManager.registerRemainingTimeUpdateHandler(remainingTimeDisplayUpdateHandler);
+        TimerServiceManager.registerRemainingTimeUpdateHandler(remainingTimeUpdateHandler);
         questionSets = questionSetListController.getQuestionSets();
         setListAdapter(new QuestionSetListAdapter(this, questionSets));
     }
@@ -59,11 +60,17 @@ public class QuestionSetListActivity extends RoboListActivity {
         finish();
     }
 
+
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        TimerServiceManager.unregisterRemainingTimeUpdateHandler();
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case Dialogs.ID_TIME_UP_DIALOG:
+                return Dialogs.createTimeUpDialog(this);
+            default:
+                return null;
+        }
     }
+
 
     private class QuestionSetListAdapter extends ArrayAdapter<QuestionSet> {
         private Context context;

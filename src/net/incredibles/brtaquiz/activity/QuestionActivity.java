@@ -1,5 +1,6 @@
 package net.incredibles.brtaquiz.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class QuestionActivity extends RoboActivity {
     private QuestionController questionController;
 
     private RadioButton previouslySelectedRadioButton;
-    private Handler remainingTimeDisplayUpdateHandler;
+    private Handler remainingTimeUpdateHandler;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,21 +58,27 @@ public class QuestionActivity extends RoboActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        remainingTimeDisplayUpdateHandler = new RemainingTimeDisplayUpdateHandler(timeRemainingTextView);
+        remainingTimeUpdateHandler = new RemainingTimeUpdateHandler(this, timeRemainingTextView);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
+        TimerServiceManager.registerRemainingTimeUpdateHandler(remainingTimeUpdateHandler);
         prepareUI();
-        TimerServiceManager.registerRemainingTimeUpdateHandler(remainingTimeDisplayUpdateHandler);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        TimerServiceManager.unregisterRemainingTimeUpdateHandler();
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case Dialogs.ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG:
+                return Dialogs.createReviewOrSubmitConfirmationDialog(this, questionController);
+            case Dialogs.ID_TIME_UP_DIALOG:
+                return Dialogs.createTimeUpDialog(this);
+            default:
+                return null;
+        }
     }
 
     private void prepareUI() {
@@ -83,43 +90,17 @@ public class QuestionActivity extends RoboActivity {
         displaySignImage(question);
         displayAnswers(question);
 
-        preparePreviousAndNextButtons();
+        preparePreviousButton();
+        prepareNextButton();
     }
 
     private void displayQuestionSetDetails(Question question) {
         questionSetDetailsTextView.setText(question.getSignSet().getName()
-                + " (" + questionController.getNoOfQuestionsInCurrentQuestionSet() + " " + questions + ")");
+                + " (" + questionController.getQuestionCountInCurrentQuestionSet() + " " + questions + ")");
     }
 
     private void displayQuestionWithSerial(Question question) {
         questionTextView.setText(question.getSerialNoInQuestionSet() + ". " + questionText);
-    }
-
-    private void preparePreviousAndNextButtons() {
-        prevBtn.setVisibility(View.VISIBLE);
-        prevBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                questionController.previousQuestion();
-                prepareUI();
-            }
-        });
-
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                questionController.nextQuestion();
-                prepareUI();
-            }
-        });
-
-        if (questionController.isFirstQuestion()) {
-            prevBtn.setVisibility(View.INVISIBLE);
-        }
-
-        if (questionController.isLastQuestion()) {
-            showNextSetOrFinishLabelOnNextButton();
-        }
     }
 
     private void displaySignImage(Question question) {
@@ -154,6 +135,9 @@ public class QuestionActivity extends RoboActivity {
                 } else {
                     previouslySelectedRadioButton = clickedRadioButton;
                     questionController.markAnswer(answersRadioGroup.getCheckedRadioButtonId());
+                    if (!questionController.isUserReviewing() && questionController.isAllQuestionsAnswered()) {
+                        showDialog(Dialogs.ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG);
+                    }
                 }
             }
         });
@@ -164,24 +148,42 @@ public class QuestionActivity extends RoboActivity {
         }
     }
 
-    private void showNextSetOrFinishLabelOnNextButton() {
-        String label;
-        final Class targetActivityClass;
-
-        if (questionController.isAllQuestionsAnswered()) {
-            label = getString(R.string.finish);
-            targetActivityClass = ResultActivity.class;
-        } else {
-            label = getString(R.string.choose_next_set);
-            targetActivityClass = QuestionSetListActivity.class;
-        }
-
-        nextBtn.setText(label);
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+    private void preparePreviousButton() {
+        prevBtn.setVisibility(View.VISIBLE);
+        prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(QuestionActivity.this, targetActivityClass));
+                questionController.previousQuestion();
+                prepareUI();
             }
         });
+
+        if (questionController.isFirstQuestion()) {
+            prevBtn.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void prepareNextButton() {
+        int buttonLabelTextResourceId = R.string.next;
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                questionController.nextQuestion();
+                prepareUI();
+            }
+        };
+
+        if (questionController.isLastQuestionInCurrentSet()) {
+            buttonLabelTextResourceId = R.string.choose_next_set;
+            onClickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(QuestionActivity.this, QuestionSetListActivity.class));
+                }
+            };
+        }
+
+        nextBtn.setText(buttonLabelTextResourceId);
+        nextBtn.setOnClickListener(onClickListener);
     }
 }

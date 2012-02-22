@@ -37,10 +37,12 @@ public class QuizManager {
     @Inject
     private AnswerDao answerDao;
 
+    private int noOfQuestions;
+
     public void prepareQuiz() {
         cacheSignSetsToLocalDatabase();
 
-        int noOfQuestions = Integer.parseInt(application.getString(R.string.no_of_questions));
+        noOfQuestions = Integer.parseInt(application.getString(R.string.no_of_questions));
 
         Cursor cursor = application.getContentResolver().query(
                 BrtaSignsContract.Sign.CONTENT_URI, null, null, null, "RANDOM()");
@@ -97,12 +99,12 @@ public class QuizManager {
         return questionDao.getPreviousQuestion(question) == null;
     }
 
-    public boolean isLastQuestion(Question question) {
+    public boolean isLastQuestionInCurrentSet(Question question) {
         return questionDao.getNextQuestion(question) == null;
     }
 
-    public boolean isAllQuestionsAnswered() {
-        return questionDao.getUnansweredQuestions(session.getLoggedInUser()).isEmpty();
+    public boolean isLastQuestionInTotalExam() {
+        return questionDao.getUnansweredQuestions(session.getLoggedInUser()).size() == 1;
     }
 
     public int getQuestionCountInCurrentQuestionSet() {
@@ -120,10 +122,16 @@ public class QuizManager {
 
     public void markAnswer(int signId) {
         saveMarkedAnswerToDatabase(new Sign(signId));
+        session.setNoOfQuestionsMarked(session.getNoOfQuestionsMarked() + 1);
     }
 
     public void unMarkAnswer() {
         saveMarkedAnswerToDatabase(null);
+        session.setNoOfQuestionsMarked(session.getNoOfQuestionsMarked() - 1);
+    }
+
+    public boolean isAllQuestionsAnswered() {
+        return session.getNoOfQuestionsMarked() == noOfQuestions;
     }
 
     private Question getCurrentQuestion() {

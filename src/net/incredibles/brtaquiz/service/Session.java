@@ -20,10 +20,18 @@ public class Session extends SharedPreferencesWrapper {
     private int currentQuestionSerial;
     private int currentQuestionId;
     private int currentQuestionSetId;
+    private int noOfQuestionsMarked;
+    private boolean userReviewing;
 
     @Inject
     public Session(Application application) {
         super(application, SHARED_PREF_FILE_NAME);
+    }
+
+    public void reset() {
+        clear();
+        currentQuestionSerial = currentQuestionId = currentQuestionSetId = noOfQuestionsMarked = 0;
+        userReviewing = false;
     }
 
     public User getLoggedInUser() {
@@ -78,8 +86,33 @@ public class Session extends SharedPreferencesWrapper {
 
     public void setCurrentQuestionSetId(int questionSetId) {
         this.currentQuestionSetId = questionSetId;
-
         set(CURRENT_QUESTION_SET_ID, questionSetId);
+    }
+
+    public int getNoOfQuestionsMarked() {
+        if (noOfQuestionsMarked == 0) {
+            noOfQuestionsMarked = get(NO_OF_QUESTIONS_MARKED, 0);
+        }
+
+        return noOfQuestionsMarked;
+    }
+
+    public void setNoOfQuestionsMarked(int noOfQuestionsMarked) {
+        this.noOfQuestionsMarked = noOfQuestionsMarked;
+        set(NO_OF_QUESTIONS_MARKED, noOfQuestionsMarked);
+    }
+
+    public boolean isUserReviewing() {
+        if (!userReviewing) {
+            userReviewing = get(USER_IS_REVIEWING, false);
+        }
+
+        return userReviewing;
+    }
+
+    public void setUserReviewing(boolean userReviewing) {
+        this.userReviewing = userReviewing;
+        set(USER_IS_REVIEWING, userReviewing);
     }
 
     interface SessionKeys {
@@ -89,6 +122,8 @@ public class Session extends SharedPreferencesWrapper {
         String CURRENT_QUESTION_SERIAL = "curr_ques_serial";
         String CURRENT_QUESTION_ID = "curr_ques_id";
         String CURRENT_QUESTION_SET_ID = "curr_ques_set_id";
+        String NO_OF_QUESTIONS_MARKED = "no_of_ques_marked";
+        String USER_IS_REVIEWING = "user_is_reviewing";
     }
 
 }

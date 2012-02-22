@@ -56,6 +56,12 @@ public class TimerService extends RoboService {
     }
 
     @Override
+    public void onDestroy() {
+        countDownTimer.cancel();
+        foreGroundServiceCompat.stopForeground(SERVICE_ID);
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
 
@@ -122,8 +128,7 @@ public class TimerService extends RoboService {
             try {
                 clientMessenger.send(Message.obtain(null, MSG_TIME_UP));
                 foreGroundServiceCompat.stopForeground(SERVICE_ID);
-            } catch (RemoteException e) {
-                e.printStackTrace();
+            } catch (RemoteException ignore) {
             }
         }
 

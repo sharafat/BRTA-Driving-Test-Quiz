@@ -48,12 +48,21 @@ public class TimerServiceManager {
         }
     }
 
-    public static void registerRemainingTimeUpdateHandler(Handler callbackHandler) {
-        timeTickCallbackHandler = callbackHandler;
+    public static void stopTimerService() {
+        if (instance != null) {
+            instance.doUnbindService();
+            instance = null;
+        }
     }
 
-    public static void unregisterRemainingTimeUpdateHandler() {
-        timeTickCallbackHandler = null;
+    public static void registerRemainingTimeUpdateHandler(Handler callbackHandler) {
+        if (instance == null) {
+            Message timeUpMsg = new Message();
+            timeUpMsg.what = TimerService.MSG_TIME_UP;
+            callbackHandler.sendMessage(timeUpMsg);
+        } else {
+            timeTickCallbackHandler = callbackHandler;
+        }
     }
 
     private void doBindService() {
@@ -78,37 +87,37 @@ public class TimerServiceManager {
     }
 
 
-
     private class IncomingHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             Bundle bundle = new Bundle();
-            Message newMsg = new Message();
+            Message relayMsg = new Message();
 
             switch (msg.what) {
                 case TimerService.MSG_TIME_PULSE:
                     Long timeRemaining = (Long) msg.getData().get(TimerService.KEY_TIME_PULSE);
 
                     bundle.putString(TimerService.KEY_TIME_PULSE, TimerService.getFormattedTime(timeRemaining));
-                    newMsg.what = TimerService.MSG_TIME_PULSE;
+                    relayMsg.what = TimerService.MSG_TIME_PULSE;
+                    relayMsg.setData(bundle);
 
                     break;
                 case TimerService.MSG_TIME_UP:
                     doUnbindService();
-                    newMsg.what = TimerService.MSG_TIME_UP;
+                    instance = null;
+
+                    relayMsg.what = TimerService.MSG_TIME_UP;
 
                     break;
                 default:
                     super.handleMessage(msg);
             }
 
-            newMsg.setData(bundle);
-            if (timeTickCallbackHandler != null) {
-                try {
-                    timeTickCallbackHandler.sendMessage(newMsg);
-                } catch (NullPointerException e) {
-                    timeTickCallbackHandler = null;
+            try {
+                if (timeTickCallbackHandler != null) {
+                    timeTickCallbackHandler.sendMessage(relayMsg);
                 }
+            } catch (NullPointerException ignore) {
             }
         }
     }

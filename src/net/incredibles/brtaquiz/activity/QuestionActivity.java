@@ -112,25 +112,10 @@ public class QuestionActivity extends RoboActivity {
 
         if (questionController.isFirstQuestion()) {
             prevBtn.setVisibility(View.INVISIBLE);
-        } else if (questionController.isLastQuestion()) {
-            String label;
-            final Class targetActivityClass;
+        }
 
-            if (questionController.isAllQuestionsAnswered()) {
-                label = getString(R.string.finish);
-                targetActivityClass = ResultActivity.class;
-            } else {
-                label = getString(R.string.choose_next_set);
-                targetActivityClass = QuestionSetListActivity.class;
-            }
-
-            nextBtn.setText(label);
-            nextBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(QuestionActivity.this, targetActivityClass));
-                }
-            });
+        if (questionController.isLastQuestion()) {
+            showNextSetOrFinishLabelOnNextButton();
         }
     }
 
@@ -174,5 +159,26 @@ public class QuestionActivity extends RoboActivity {
         if (checked) {
             previouslySelectedRadioButton = radioButton;
         }
+    }
+
+    private void showNextSetOrFinishLabelOnNextButton() {
+        String label;
+        final Class targetActivityClass;
+
+        if (questionController.isAllQuestionsAnswered()) {
+            label = getString(R.string.finish);
+            targetActivityClass = ResultActivity.class;
+        } else {
+            label = getString(R.string.choose_next_set);
+            targetActivityClass = QuestionSetListActivity.class;
+        }
+
+        nextBtn.setText(label);
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(QuestionActivity.this, targetActivityClass));
+            }
+        });
     }
 }

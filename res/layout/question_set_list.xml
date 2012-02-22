@@ -3,8 +3,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:padding="10dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
               android:orientation="vertical">
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp">
+
+        <TextView
+                android:id="@+id/time_remaining_text_view"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="right"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/time_remaining_text_view"
+                android:paddingRight="10dp"
+                android:text="@string/time_remaining"/>
+
+    </RelativeLayout>
 
     <TextView
             android:layout_width="fill_parent"

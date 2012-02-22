@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.LoginController;
+import net.incredibles.brtaquiz.service.TimerServiceManager;
 import net.incredibles.brtaquiz.util.IndefiniteProgressingTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,6 +103,7 @@ public class LoginActivity extends RoboActivity {
 
                         @Override
                         public void onSuccess(Void result) {
+                            TimerServiceManager.startTimerService();
                             startActivity(new Intent(LoginActivity.this, QuestionSetListActivity.class));
                             finish();
                         }

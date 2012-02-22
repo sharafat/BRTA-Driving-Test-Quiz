@@ -2,6 +2,7 @@ package net.incredibles.brtaquiz.app;
 
 import com.google.inject.Module;
 import net.incredibles.brtaquiz.service.DbHelperManager;
+import net.incredibles.brtaquiz.service.TimerServiceManager;
 import roboguice.application.RoboApplication;
 import roboguice.config.AbstractAndroidModule;
 
@@ -17,7 +18,7 @@ public class BrtaDrivingTestQuizApplication extends RoboApplication {
         modules.add(new AbstractAndroidModule() {
             @Override
             protected void configure() {
-                requestStaticInjection(DbHelperManager.class);
+                requestStaticInjection(DbHelperManager.class, TimerServiceManager.class);
             }
         });
     }

@@ -36,8 +36,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="right"
-                        android:paddingLeft="10dp"
-                        android:text="00:00:00"/>
+                        android:paddingLeft="10dp"/>
 
             </RelativeLayout>
 

@@ -40,7 +40,7 @@ public class QuizManager {
     public void prepareQuiz() {
         cacheSignSetsToLocalDatabase();
 
-        int maxNoOfQuestions = Integer.parseInt(application.getString(R.string.max_questions));
+        int noOfQuestions = Integer.parseInt(application.getString(R.string.no_of_questions));
 
         Cursor cursor = application.getContentResolver().query(
                 BrtaSignsContract.Sign.CONTENT_URI, null, null, null, "RANDOM()");
@@ -55,7 +55,7 @@ public class QuizManager {
                 Sign sign = new Sign(id, new SignSet(signSetId), description, image);
                 cacheSignToLocalDatabase(sign); //we need to cache all signs so that we can pick answers randomly from all of signs
 
-                if (noOfQuestionSavedToDatabase++ < maxNoOfQuestions) {
+                if (noOfQuestionSavedToDatabase++ < noOfQuestions) {
                     saveQuestionInDatabase(sign);
                 }
             } while (cursor.moveToNext());

@@ -3,6 +3,7 @@ package net.incredibles.brtaquiz.activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.*;
 import com.google.inject.Inject;
@@ -11,7 +12,9 @@ import net.incredibles.brtaquiz.controller.QuestionController;
 import net.incredibles.brtaquiz.domain.Answer;
 import net.incredibles.brtaquiz.domain.Question;
 import net.incredibles.brtaquiz.domain.Sign;
+import net.incredibles.brtaquiz.service.TimerServiceManager;
 import roboguice.activity.RoboActivity;
+import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
 
 import java.util.List;
@@ -35,17 +38,38 @@ public class QuestionActivity extends RoboActivity {
     private Button prevBtn;
     @InjectView(R.id.next_btn)
     private Button nextBtn;
+    @InjectResource(R.string.what_is_the_following_sign)
+    private String questionText;
 
     @Inject
     private QuestionController questionController;
 
     private RadioButton previouslySelectedRadioButton;
+    private Handler remainingTimeDisplayUpdateHandler;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        remainingTimeDisplayUpdateHandler = new RemainingTimeDisplayUpdateHandler(timeRemainingTextView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         prepareUI();
+        TimerServiceManager.registerRemainingTimeUpdateHandler(remainingTimeDisplayUpdateHandler);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TimerServiceManager.unregisterRemainingTimeUpdateHandler();
     }
 
     private void prepareUI() {
@@ -65,8 +89,7 @@ public class QuestionActivity extends RoboActivity {
     }
 
     private void displayQuestionWithSerial(Question question) {
-        questionTextView.setText(
-                question.getSerialNoInQuestionSet() + ". " + getString(R.string.what_is_the_following_sign));
+        questionTextView.setText(question.getSerialNoInQuestionSet() + ". " + questionText);
     }
 
     private void preparePreviousAndNextButtons() {
@@ -120,7 +143,7 @@ public class QuestionActivity extends RoboActivity {
         answersRadioGroup.removeAllViews();
 
         List<Answer> answers = question.getAnswers();
-        for (Answer answer: answers) {
+        for (Answer answer : answers) {
             Sign sign = answer.getAnswer();
             addRadioButton(sign.getId(), sign.getDescription(), sign.equals(question.getMarkedSign()));
         }

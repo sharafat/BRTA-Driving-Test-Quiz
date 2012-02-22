@@ -3,6 +3,7 @@ package net.incredibles.brtaquiz.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.QuestionSetListController;
+import net.incredibles.brtaquiz.service.TimerServiceManager;
 import roboguice.activity.RoboListActivity;
+import roboguice.inject.InjectView;
 
 import java.util.List;
 
@@ -26,19 +29,25 @@ import static net.incredibles.brtaquiz.controller.QuestionSetListController.Ques
 public class QuestionSetListActivity extends RoboListActivity {
     @Inject
     private QuestionSetListController questionSetListController;
+    @InjectView(R.id.time_remaining_text_view)
+    private TextView timeRemainingTextView;
 
     private List<QuestionSet> questionSets;
+    private Handler remainingTimeDisplayUpdateHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_set_list);
+
+        remainingTimeDisplayUpdateHandler = new RemainingTimeDisplayUpdateHandler(timeRemainingTextView);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        //TODO: use AsyncTask for the followings
+
+        TimerServiceManager.registerRemainingTimeUpdateHandler(remainingTimeDisplayUpdateHandler);
         questionSets = questionSetListController.getQuestionSets();
         setListAdapter(new QuestionSetListAdapter(this, questionSets));
     }
@@ -50,6 +59,11 @@ public class QuestionSetListActivity extends RoboListActivity {
         finish();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TimerServiceManager.unregisterRemainingTimeUpdateHandler();
+    }
 
     private class QuestionSetListAdapter extends ArrayAdapter<QuestionSet> {
         private Context context;

@@ -12,6 +12,7 @@
     <string name="choose_question_set">Choose question set</string>
     <string name="questions">Questions:</string>
     <string name="answered">Answered:</string>
+    <string name="time_remaining">Time Remaining:</string>
 
     <!-- Question -->
     <string name="what_is_the_following_sign">What is the following Sign?</string>
@@ -20,5 +21,9 @@
     <string name="finish">Finish</string>
     <string name="choose_next_set">Choose Next Set</string>
 
+    <!-- Notification -->
+    <string name="ticker_text">BRTA Driving Test Quiz started</string>
+    <string name="notification_title">BRTA Driving Test Quiz</string>
+    <string name="notification_text">Time Remaining:</string>
 
 </resources>

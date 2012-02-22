@@ -13,6 +13,8 @@
         <activity android:name=".activity.QuestionActivity"/>
         <activity android:name=".activity.ResultActivity"/>
 
+        <service android:enabled="true" android:name=".service.TimerService"/>
+
         <provider android:name="net.incredibles.brtaprovider.BrtaSignsProvider"
                   android:authorities="net.incredibles.brtaprovider"
                   android:readPermission="net.incredibles.brtaprovider.READ_BRTA_SIGNS"/>

@@ -24,11 +24,11 @@ public class LoginController {
 
     public boolean login(String regNo, String pinNo) {
         User user = retrieveUser(regNo, pinNo);
-        if (user == null) {
-            //TODO: Following is not a usual behavior of login anyway... Should return false right away...
-            user = createUser(regNo, pinNo);
+        if (user != null) {
+            return false;
         }
 
+        user = createUser(regNo, pinNo);
         session.setLoggedInUser(user);
         return true;
     }

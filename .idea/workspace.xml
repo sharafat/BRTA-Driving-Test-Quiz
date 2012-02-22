@@ -14,15 +14,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8d22202-ea23-47aa-b072-2ef8e551a546" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/question.xml" afterPath="$PROJECT_DIR$/res/layout/question.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/question_set_list_entry.xml" afterPath="$PROJECT_DIR$/res/layout/question_set_list_entry.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/login.xml" afterPath="$PROJECT_DIR$/res/layout/login.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionSetListActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionSetListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/Question.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/Question.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/Session.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/Session.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/net/incredibles/brtaquiz/activity/LoginActivityTest.java" afterPath="$PROJECT_DIR$/test/net/incredibles/brtaquiz/activity/LoginActivityTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/project.properties" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/project.properties" />
@@ -126,22 +124,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/Sign.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/app/BrtaDrivingTestQuizApplication.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/QuestionController.java" />
-        <option value="$PROJECT_DIR$/res/layout/question_set_list_entry.xml" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionSetListActivity.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/SignDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/SignSetDaoImpl.java" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/test.xml" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/Question.java" />
         <option value="$PROJECT_DIR$/res/layout/question.xml" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/Session.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/IndefiniteProgressDialog.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/IndefiniteProgressableTask.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/res/layout/login.xml" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/IndefiniteProgressingTask.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/test/net/incredibles/brtaquiz/activity/LoginActivityTest.java" />
       </list>
     </option>
   </component>
@@ -222,6 +220,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="incredibles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brtaquiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BRTA Driving Test Quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BRTA Driving Test Quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="incredibles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brtaquiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BRTA Driving Test Quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BRTA Driving Test Quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -235,6 +289,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="brtaquiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -325,6 +383,62 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BRTA Driving Test Quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BRTA Driving Test Quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="incredibles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brtaquiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BRTA Driving Test Quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BRTA Driving Test Quiz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="incredibles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brtaquiz" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -753,7 +867,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="25" width="1374" height="721" extended-state="7" />
+    <frame x="-4" y="25" width="1374" height="721" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -872,75 +986,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/android-sdk-linux-r15/sources/android-14/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3690" column="16" selection-start="155542" selection-end="155542" vertical-scroll-proportion="0.072463766" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionSetListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="13" selection-start="1349" selection-end="1349" vertical-scroll-proportion="0.7678245" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/Result.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="308" selection-end="308" vertical-scroll-proportion="0.41133454">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/ResultDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.52102375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/SignSetDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="916" selection-end="916" vertical-scroll-proportion="0.5612431">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/SignDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="53" selection-start="952" selection-end="952" vertical-scroll-proportion="0.369287">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/SignDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="345" selection-end="345" vertical-scroll-proportion="0.30164534">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/dao/SignSetDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="306" selection-end="306" vertical-scroll-proportion="0.30164534">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="25" selection-start="680" selection-end="680" vertical-scroll-proportion="0.49360147">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="31" selection-start="483" selection-end="642" vertical-scroll-proportion="0.53910613">
           <folding />
         </state>
       </provider>
@@ -959,13 +1007,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="99" selection-start="3698" selection-end="3698" vertical-scroll-proportion="0.630713">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/Session.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="25" selection-start="2564" selection-end="2564" vertical-scroll-proportion="2.2212067">
@@ -976,6 +1017,89 @@
     <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="92" column="12" selection-start="2956" selection-end="2956" vertical-scroll-proportion="2.1389396">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/RoboGuice-1.1.2/roboguice-1.1.2-sources.jar!/roboguice/util/SafeAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="22" selection-start="819" selection-end="819" vertical-scroll-proportion="-5.3893967">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/domain/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="147" selection-end="147" vertical-scroll-proportion="0.054844607">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="16" selection-start="1011" selection-end="1011" vertical-scroll-proportion="0.08592322">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="28" selection-start="215" selection-end="215" vertical-scroll-proportion="0.16453382">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="0" selection-start="736" selection-end="736" vertical-scroll-proportion="0.38391224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="39" selection-start="1516" selection-end="1516" vertical-scroll-proportion="0.5886654">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdk-linux-r15/sources/android-14/android/app/AlertDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="13" selection-start="2456" selection-end="2456" vertical-scroll-proportion="-4.6855574">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/RoboGuice-1.1.2/roboguice-1.1.2-sources.jar!/roboguice/util/RoboAsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="22" selection-start="363" selection-end="363" vertical-scroll-proportion="0.24680074">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/IndefiniteProgressingTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="712" selection-end="712" vertical-scroll-proportion="0.5319927">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#998#1028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="48" selection-start="2653" selection-end="2653" vertical-scroll-proportion="0.369287">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1572#1602#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/net/incredibles/brtaquiz/activity/LoginActivityTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="27" selection-start="948" selection-end="948" vertical-scroll-proportion="0.54844606">
           <folding />
         </state>
       </provider>

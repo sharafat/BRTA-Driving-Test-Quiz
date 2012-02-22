@@ -4,7 +4,9 @@
     <!-- Login -->
     <string name="reg_no">Registration No.</string>
     <string name="pin_no">Pin No.</string>
-    <string name="login">Login</string>
+    <string name="start_test">Start Test</string>
+    <string name="authenticating">Authenticating...</string>
+    <string name="preparing_quiz_questions">Preparing Quiz Questions...</string>
 
     <!-- Question Set List -->
     <string name="choose_question_set">Choose question set</string>

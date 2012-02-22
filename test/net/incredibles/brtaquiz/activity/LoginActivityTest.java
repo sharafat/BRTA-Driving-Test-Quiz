@@ -31,8 +31,8 @@ public class LoginActivityTest {
 
     @Test
     public void pressingLoginBtnShouldStartNextActivity() {
-        Button loginBtn = (Button) loginActivity.findViewById(R.id.login_btn);
-        loginBtn.performClick();
+        Button startTestBtn = (Button) loginActivity.findViewById(R.id.start_test_btn);
+        startTestBtn.performClick();
 
         ShadowActivity shadowActivity = shadowOf(loginActivity);
         Intent startedIntent = shadowActivity.getNextStartedActivity();

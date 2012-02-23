@@ -1,5 +1,5 @@
 <resources>
-    <string name="no_of_questions">6</string>
+    <string name="no_of_questions">30</string>
     <string name="alternate_answers_per_question">3</string>
     <string name="time_per_question_in_seconds">10</string>
 </resources>

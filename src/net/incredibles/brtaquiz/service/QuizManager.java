@@ -10,6 +10,8 @@ import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.dao.*;
 import net.incredibles.brtaquiz.domain.*;
 import net.incredibles.brtaquiz.util.TimeUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import roboguice.inject.InjectResource;
 
 import java.sql.SQLException;
@@ -24,6 +26,8 @@ import java.util.Random;
  */
 @Singleton
 public class QuizManager {
+    private static final Logger LOG = LoggerFactory.getLogger(QuizManager.class);
+
     @Inject
     private Application application;
     @Inject
@@ -99,7 +103,9 @@ public class QuizManager {
     }
 
     public Question currentQuestion() {
-        return setAnswersAndSerial(getCurrentQuestion(), session.getCurrentQuestionSerial());
+        Question currentQuestion = setAnswersAndSerial(getCurrentQuestion(), session.getCurrentQuestionSerial());
+        LOG.debug("Current Question: {}\nAnswers: {}", currentQuestion.toString(), currentQuestion.getAnswers().toString());
+        return currentQuestion;
     }
 
     public Question nextQuestion() {
@@ -113,7 +119,7 @@ public class QuizManager {
     }
 
     public Question jumpToQuestion(int questionSerial) {    //questionSerial starts from 1
-        Question currentQuestion = currentQuestion();
+        Question currentQuestion = getCurrentQuestion();
         return setAnswersAndSerial(questionDao.getQuestionBySerial(
                 currentQuestion.getUser(), currentQuestion.getSignSet(), questionSerial), questionSerial);
     }
@@ -141,6 +147,11 @@ public class QuizManager {
 
     public Map<SignSet, Integer> getQuestionSetsWithMarkedCount() {
         return questionDao.getQuestionSetsWithMarkedCount(session.getLoggedInUser());
+    }
+
+    public Map<Integer, Boolean> getQuestionsWithMarkedStatusInCurrentQuestionSet() {
+        return questionDao.getQuestionsWithMarkedStatus(session.getLoggedInUser(),
+                new SignSet(session.getCurrentQuestionSetId()));
     }
 
     public void markAnswer(int signId, boolean updatingAnswer) {
@@ -243,8 +254,11 @@ public class QuizManager {
     }
 
     private void saveMarkedAnswerToDatabase(Sign markedSign) {
-        Question currentQuestion = currentQuestion();
+        Question currentQuestion = getCurrentQuestion();
         currentQuestion.setMarkedSign(markedSign);
+        LOG.debug("Saving Marked Answer. questionId: {}, Answer signId: {}", currentQuestion.getId(),
+                markedSign == null ? "null" : markedSign.getId());
+
         try {
             questionDao.save(currentQuestion);
         } catch (SQLException e) {

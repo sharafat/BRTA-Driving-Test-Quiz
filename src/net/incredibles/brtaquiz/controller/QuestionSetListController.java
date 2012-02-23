@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.incredibles.brtaquiz.domain.SignSet;
 import net.incredibles.brtaquiz.service.QuizManager;
+import net.incredibles.brtaquiz.service.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class QuestionSetListController {
     Application application;
     @Inject
     private QuizManager quizManager;
+    @Inject
+    private Session session;
 
     public List<QuestionSet> getQuestionSets() {
         Map<SignSet, Integer> questionSetsWithQuestionsCount = quizManager.getQuestionSetsWithQuestionCount();
@@ -41,6 +44,14 @@ public class QuestionSetListController {
 
     public void selectQuestionSet(QuestionSet questionSet) {
         quizManager.selectQuestionSet(questionSet.getSignSet());
+    }
+
+    public boolean isAllQuestionsAnswered() {
+        return quizManager.isAllQuestionsAnswered();
+    }
+
+    public boolean isUserReviewing() {
+        return session.isUserReviewing();
     }
 
 

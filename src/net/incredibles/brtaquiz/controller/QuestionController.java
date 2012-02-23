@@ -6,6 +6,8 @@ import net.incredibles.brtaquiz.domain.Question;
 import net.incredibles.brtaquiz.service.QuizManager;
 import net.incredibles.brtaquiz.service.Session;
 
+import java.util.Map;
+
 /**
  * @author sharafat
  * @Created 2/21/12 7:48 PM
@@ -35,6 +37,10 @@ public class QuestionController {
 
     public int getQuestionCountInCurrentQuestionSet() {
         return quizManager.getQuestionCountInCurrentQuestionSet();
+    }
+
+    public Map<Integer, Boolean> getQuestionsWithMarkedStatusInCurrentQuestionSet() {
+        return quizManager.getQuestionsWithMarkedStatusInCurrentQuestionSet();
     }
 
     public void nextQuestion() {

@@ -38,4 +38,5 @@ public interface QuestionDao {
 
     Map<SignSet, List<Question>> getQuestionsGroupedBySignSet(User user);
 
+    Map<Integer,Boolean> getQuestionsWithMarkedStatus(User user, SignSet signSet);
 }

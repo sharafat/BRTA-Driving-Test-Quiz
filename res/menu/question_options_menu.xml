@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_jump_to_question"
+          android:icon="@drawable/ic_menu_jump_to_question"
+          android:title="@string/menu_jump_to_question"/>
+
+    <item android:id="@+id/menu_question_set"
+          android:icon="@drawable/ic_menu_question_sets"
+          android:title="@string/menu_question_sets"/>
+
+    <item android:id="@+id/menu_finish_test"
+          android:icon="@drawable/ic_menu_finish_test"
+          android:title="@string/menu_finish_test"/>
+
+</menu>

@@ -4,9 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -68,12 +66,35 @@ public class QuestionSetListActivity extends RoboListActivity {
         finish();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.question_set_list_options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_finish_test:
+                if (questionSetListController.isAllQuestionsAnswered()) {
+                    startActivity(new Intent(this, ResultActivity.class));
+                    finish();
+                } else {
+                    showDialog(Dialogs.ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case Dialogs.ID_TIME_UP_DIALOG:
                 return Dialogs.createTimeUpDialog(this);
+            case Dialogs.ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG:
+                return Dialogs.createFinishingWithIncompleteAnswersConfirmationDialog(this);
             default:
                 return null;
         }

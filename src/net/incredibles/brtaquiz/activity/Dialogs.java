@@ -15,6 +15,8 @@ import net.incredibles.brtaquiz.controller.QuestionController;
 public class Dialogs {
     public static final int ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG = 1;
     public static final int ID_TIME_UP_DIALOG = 2;
+    public static final int ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG = 3;
+    public static final int ID_JUMP_TO_QUESTION_DIALOG = 4;
 
     public static Dialog createReviewOrSubmitConfirmationDialog(final QuestionActivity questionActivity,
                                                                 final QuestionController questionController) {
@@ -36,9 +38,7 @@ public class Dialogs {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(questionActivity, ResultActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                questionActivity.startActivity(intent);
+                                questionActivity.startActivity(new Intent(questionActivity, ResultActivity.class));
                                 questionActivity.removeDialog(ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG);
                                 questionActivity.finish();
                             }
@@ -58,6 +58,31 @@ public class Dialogs {
                             public void onClick(DialogInterface dialog, int which) {
                                 activity.startActivity(new Intent(activity, ResultActivity.class));
                                 activity.removeDialog(ID_TIME_UP_DIALOG);
+                                activity.finish();
+                            }
+                        })
+                .create();
+    }
+
+    public static Dialog createFinishingWithIncompleteAnswersConfirmationDialog(final Activity activity) {
+        return new AlertDialog.Builder(activity)
+                .setCancelable(false)
+                .setIcon(R.drawable.ic_launcher)
+                .setTitle(R.string.finish_test_with_incomplete_answers_dialog_title)
+                .setMessage(R.string.finish_test_with_incomplete_answers_dialog_msg)
+                .setPositiveButton(R.string.finish_test_with_incomplete_answers_resume_btn,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                activity.removeDialog(ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG);
+                            }
+                        })
+                .setNegativeButton(R.string.review_or_submit_dialog_finish_btn,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                activity.startActivity(new Intent(activity, ResultActivity.class));
+                                activity.removeDialog(ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG);
                                 activity.finish();
                             }
                         })

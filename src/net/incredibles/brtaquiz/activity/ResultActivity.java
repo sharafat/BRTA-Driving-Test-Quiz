@@ -9,7 +9,10 @@ import android.widget.TextView;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.ResultController;
+import net.incredibles.brtaquiz.util.IndefiniteProgressingTask;
 import net.incredibles.brtaquiz.util.PieChart;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
@@ -19,6 +22,8 @@ import roboguice.inject.InjectView;
  * @Created 2/21/12 9:49 PM
  */
 public class ResultActivity extends RoboActivity {
+    private static final Logger LOG = LoggerFactory.getLogger(ResultActivity.class);
+
     @InjectView(R.id.total_questions)
     private TextView totalQuestionsTextView;
     @InjectView(R.id.answered)
@@ -40,6 +45,8 @@ public class ResultActivity extends RoboActivity {
     @InjectView(R.id.quit_btn)
     private Button quitBtn;
 
+    @InjectResource(R.string.preparing_result)
+    private String preparingResult;
     @InjectResource(R.string.result)
     private String result;
     @InjectResource(R.string.correct)
@@ -54,12 +61,10 @@ public class ResultActivity extends RoboActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        new PrepareResultTask().execute();
+
         setContentView(R.layout.result);
-
-        resultController.prepareResult();
-
-        updateUI();
-
         setButtonClickHandlers();
     }
 
@@ -109,5 +114,32 @@ public class ResultActivity extends RoboActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    private class PrepareResultTask extends IndefiniteProgressingTask<Void> {
+
+        public PrepareResultTask() {
+            super(ResultActivity.this,
+                    preparingResult,
+                    new OnTaskExecutionListener<Void>() {
+                        @Override
+                        public Void execute() {
+                            resultController.prepareResult();
+                            return null;
+                        }
+
+                        @Override
+                        public void onSuccess(Void result) {
+                            updateUI();
+                        }
+
+                        @Override
+                        public void onException(Exception e) {
+                            LOG.error("Error while preparing result", e);
+                            throw new RuntimeException(e);
+                        }
+                    });
+        }
     }
 }

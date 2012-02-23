@@ -12,10 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author sharafat
@@ -59,7 +56,7 @@ public class QuestionDaoImpl implements QuestionDao {
     @Override
     public Question getFirstQuestionByUserAndSignSet(User user, SignSet signSet) {
         try {
-            return questionDao.query(questionDao.queryBuilder().limit(1L)
+            return questionDao.query(questionDao.queryBuilder().orderBy("id", true).limit(1L)
                     .where().eq("user_id", user.getId()).and().eq("sign_set_id", signSet.getId())
                     .prepare()
             ).get(0);
@@ -93,7 +90,7 @@ public class QuestionDaoImpl implements QuestionDao {
     public Question getNextQuestion(Question question) {
         try {
             List<Question> nextQuestion = questionDao.query(
-                    questionDao.queryBuilder().limit(1L)
+                    questionDao.queryBuilder().orderBy("id", true).limit(1L)
                             .where().eq("user_id", question.getUser().getId())
                             .and().eq("sign_set_id", question.getSignSet().getId())
                             .and().gt("id", question.getId())
@@ -134,7 +131,7 @@ public class QuestionDaoImpl implements QuestionDao {
     @Override
     public Question getQuestionBySerial(User user, SignSet signSet, long serial) {
         try {
-            return questionDao.query(questionDao.queryBuilder().offset(serial - 1).limit(1L)
+            return questionDao.query(questionDao.queryBuilder().orderBy("id", true).offset(serial - 1).limit(1L)
                     .where().eq("user_id", user.getId()).and().eq("sign_set_id", signSet.getId())
                     .prepare()
             ).get(0);
@@ -225,6 +222,27 @@ public class QuestionDaoImpl implements QuestionDao {
             }
 
             return questionsGroupedBySignSet;
+        } catch (SQLException e) {
+            LOG.error("Query exception", e);
+            return null;
+        }
+    }
+
+    @Override
+    public Map<Integer, Boolean> getQuestionsWithMarkedStatus(User user, SignSet signSet) {
+        Map<Integer, Boolean> questionsWithMarkedStatus = new TreeMap<Integer, Boolean>();
+
+        String query = "SELECT id, marked_sign_id FROM question WHERE user_id = ? AND sign_set_id = ? ORDER BY id";
+
+        try {
+            List<String[]> result = questionDao.queryRaw(query, Integer.toString(user.getId()), Integer.toString(signSet.getId()))
+                    .getResults();
+
+            for (String[] row : result) {
+                questionsWithMarkedStatus.put(Integer.parseInt(row[0]), row[1] != null);
+            }
+
+            return questionsWithMarkedStatus;
         } catch (SQLException e) {
             LOG.error("Query exception", e);
             return null;

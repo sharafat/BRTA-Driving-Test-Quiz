@@ -13,7 +13,7 @@ import android.os.*;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.incredibles.brtaquiz.R;
-import net.incredibles.brtaquiz.activity.QuestionActivity;
+import net.incredibles.brtaquiz.activity.QuestionSetListActivity;
 import net.incredibles.brtaquiz.util.ForeGroundServiceCompat;
 import net.incredibles.brtaquiz.util.TimeUtils;
 import roboguice.inject.InjectResource;
@@ -57,19 +57,13 @@ public class TimerService extends RoboService {
     }
 
     @Override
-    public void onDestroy() {
-        countDownTimer.cancel();
-        foreGroundServiceCompat.stopForeground(SERVICE_ID);
-    }
-
-    @Override
     public void onCreate() {
         super.onCreate();
 
         serviceMessenger = new Messenger(new IncomingHandler());
         notification = new Notification(R.drawable.ic_launcher, notificationTickerText, System.currentTimeMillis());
         pendingIntentForNotification = PendingIntent.getActivity(this, 0,
-                new Intent(this, QuestionActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
+                new Intent(this, QuestionSetListActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
         foreGroundServiceCompat = new ForeGroundServiceCompat(this);
 
         long testDuration = getTestDuration();
@@ -114,7 +108,6 @@ public class TimerService extends RoboService {
         public void onFinish() {
             try {
                 clientMessenger.send(Message.obtain(null, MSG_TIME_UP));
-                foreGroundServiceCompat.stopForeground(SERVICE_ID);
             } catch (RemoteException ignore) {
             }
         }
@@ -137,6 +130,8 @@ public class TimerService extends RoboService {
                     break;
                 case MSG_UNREGISTER_CLIENT:
                     clientMessenger = null;
+                    countDownTimer.cancel();
+                    foreGroundServiceCompat.stopForeground(SERVICE_ID);
                     break;
                 default:
                     super.handleMessage(msg);

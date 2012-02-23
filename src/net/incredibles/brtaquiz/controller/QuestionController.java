@@ -49,8 +49,8 @@ public class QuestionController {
         quizManager.jumpToQuestion(questionSerial);
     }
 
-    public void markAnswer(int signId) {
-        quizManager.markAnswer(signId);
+    public void markAnswer(int signId, boolean updatingAnswer) {
+        quizManager.markAnswer(signId, updatingAnswer);
     }
 
     public void unMarkAnswer() {

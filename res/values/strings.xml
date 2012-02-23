@@ -10,9 +10,9 @@
 
     <!-- Question Set List -->
     <string name="choose_question_set">Choose question set</string>
-    <string name="questions">Questions:</string>
-    <string name="answered">Answered:</string>
-    <string name="time_remaining">Time Remaining:</string>
+    <string name="questions">Questions</string>
+    <string name="answered">Answered</string>
+    <string name="time_remaining_with_colon">Time Remaining:</string>
 
     <!-- Question -->
     <string name="questions">Questions</string>
@@ -21,6 +21,18 @@
     <string name="next">Next</string>
     <string name="finish">Finish Test</string>
     <string name="choose_next_set">Choose Next Set</string>
+
+    <!-- Result -->
+    <string name="result">Result</string>
+    <string name="total_questions">Total Questions</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="unanswered">Unanswered</string>
+    <string name="time_taken">Time Taken</string>
+    <string name="total_time">Total Time</string>
+    <string name="detailed_result">Detailed Result</string>
+    <string name="quit">Quit</string>
+    <string name="question_set">Question Set</string>
 
     <!-- Notification -->
     <string name="ticker_text">BRTA Driving Test Quiz started</string>

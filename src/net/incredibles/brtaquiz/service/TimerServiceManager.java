@@ -7,12 +7,20 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.*;
 import com.google.inject.Inject;
+import net.incredibles.brtaquiz.R;
+import net.incredibles.brtaquiz.util.TimeUtils;
+import roboguice.inject.InjectResource;
 
 /**
  * @author shaiekh
  * @Created 2/20/12 7:01 PM
  */
 public class TimerServiceManager {
+    @InjectResource(R.string.time_per_question_in_seconds)
+    private static String timePerQuestionInSeconds;
+    @InjectResource(R.string.no_of_questions)
+    private static String noOfQuestions;
+
     @Inject
     private static Application application;
 
@@ -21,6 +29,7 @@ public class TimerServiceManager {
 
     private Messenger serviceMessenger;
     private Messenger managerMessenger = new Messenger(new IncomingHandler());
+    private long remainingTime;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
@@ -48,11 +57,18 @@ public class TimerServiceManager {
         }
     }
 
-    public static void stopTimerService() {
+    public static long stopTimerService() {
+        long remainingTime = 0;
+
         if (instance != null) {
+            remainingTime = instance.remainingTime;
             instance.doUnbindService();
             instance = null;
         }
+
+        long testDuration = TimeUtils.getTestDuration(Long.parseLong(timePerQuestionInSeconds) * 1000L,
+                Integer.parseInt(noOfQuestions));
+        return testDuration - remainingTime;
     }
 
     public static void registerRemainingTimeUpdateHandler(Handler callbackHandler) {
@@ -95,9 +111,9 @@ public class TimerServiceManager {
 
             switch (msg.what) {
                 case TimerService.MSG_TIME_PULSE:
-                    Long timeRemaining = (Long) msg.getData().get(TimerService.KEY_TIME_PULSE);
+                    remainingTime = (Long) msg.getData().get(TimerService.KEY_TIME_PULSE);
 
-                    bundle.putString(TimerService.KEY_TIME_PULSE, TimerService.getFormattedTime(timeRemaining));
+                    bundle.putString(TimerService.KEY_TIME_PULSE, TimeUtils.getFormattedTime(remainingTime));
                     relayMsg.what = TimerService.MSG_TIME_PULSE;
                     relayMsg.setData(bundle);
 

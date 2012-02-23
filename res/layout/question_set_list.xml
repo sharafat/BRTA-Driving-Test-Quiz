@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/time_remaining_text_view"
                 android:paddingRight="10dp"
-                android:text="@string/time_remaining"/>
+                android:text="@string/time_remaining_with_colon"/>
 
     </RelativeLayout>
 

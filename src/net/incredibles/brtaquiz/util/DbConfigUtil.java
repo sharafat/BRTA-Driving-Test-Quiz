@@ -12,7 +12,7 @@ import net.incredibles.brtaquiz.domain.*;
  */
 class DbConfigUtil extends OrmLiteConfigUtil {
     private static final Class<?>[] classes = new Class[] {
-            SignSet.class, Sign.class, User.class, Question.class, Answer.class
+            SignSet.class, Sign.class, User.class, Question.class, Answer.class, Result.class, QuizTime.class
     };
 
     public static void main(String[] args) throws Exception {

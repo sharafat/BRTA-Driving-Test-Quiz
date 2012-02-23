@@ -30,7 +30,6 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <orderEntry type="library" scope="TEST" name="junit-4.10" level="application" />
     <orderEntry type="library" scope="TEST" name="test_quiz" level="project" />
     <orderEntry type="library" name="libs_quiz" level="project" />
     <orderEntry type="library" name="libs_provider" level="project" />

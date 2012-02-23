@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/question_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingBottom="5dp"
+            android:textAppearance="@android:style/TextAppearance.Medium"/>
+
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/result_horizontal_rule_background"/>
+
+    <include layout="@layout/result_entry"/>
+
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/result_horizontal_rule_background"/>
+
+</LinearLayout>

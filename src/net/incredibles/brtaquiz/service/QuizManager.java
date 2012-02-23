@@ -2,15 +2,15 @@ package net.incredibles.brtaquiz.service;
 
 import android.app.Application;
 import android.database.Cursor;
+import android.util.Log;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.incredibles.brtaprovider.BrtaSignsContract;
 import net.incredibles.brtaquiz.R;
-import net.incredibles.brtaquiz.dao.AnswerDao;
-import net.incredibles.brtaquiz.dao.QuestionDao;
-import net.incredibles.brtaquiz.dao.SignDao;
-import net.incredibles.brtaquiz.dao.SignSetDao;
+import net.incredibles.brtaquiz.dao.*;
 import net.incredibles.brtaquiz.domain.*;
+import net.incredibles.brtaquiz.util.TimeUtils;
+import roboguice.inject.InjectResource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,18 +36,29 @@ public class QuizManager {
     private QuestionDao questionDao;
     @Inject
     private AnswerDao answerDao;
+    @Inject
+    private ResultDao resultDao;
+    @Inject
+    private QuizTimeDao quizTimeDao;
+
+    @InjectResource(R.string.time_per_question_in_seconds)
+    private String timePerQuestionInSeconds;
+    @InjectResource(R.string.no_of_questions)
+    private String noOfQuestionsFromConfig;
 
     private int noOfQuestions;
+    private long testDuration;
 
     public void prepareQuiz() {
         cacheSignSetsToLocalDatabase();
 
-        noOfQuestions = Integer.parseInt(application.getString(R.string.no_of_questions));
+        noOfQuestions = Integer.parseInt(noOfQuestionsFromConfig);
+        testDuration = getTestDuration();
 
         Cursor cursor = application.getContentResolver().query(
                 BrtaSignsContract.Sign.CONTENT_URI, null, null, null, "RANDOM()");
         if (cursor != null && cursor.moveToFirst()) {
-            int noOfQuestionSavedToDatabase = 0;
+            int noOfQuestionsSavedToDatabase = 0;
             do {
                 int id = cursor.getInt(cursor.getColumnIndex(BrtaSignsContract.Sign._ID));
                 String description = cursor.getString(cursor.getColumnIndex(BrtaSignsContract.Sign.COL_DESCRIPTION));
@@ -57,11 +68,23 @@ public class QuizManager {
                 Sign sign = new Sign(id, new SignSet(signSetId), description, image);
                 cacheSignToLocalDatabase(sign); //we need to cache all signs so that we can pick answers randomly from all of signs
 
-                if (noOfQuestionSavedToDatabase++ < noOfQuestions) {
+                if (noOfQuestionsSavedToDatabase++ < noOfQuestions) {
                     saveQuestionInDatabase(sign);
                 }
             } while (cursor.moveToNext());
         }
+    }
+
+    private long getTestDuration() {
+        return TimeUtils.getTestDuration(Long.parseLong(timePerQuestionInSeconds) * 1000L,
+                Integer.parseInt(noOfQuestionsFromConfig));
+    }
+
+    public void prepareResult() {
+        long timeTaken = TimerServiceManager.stopTimerService();
+        saveResults();
+        saveTimeTaken(testDuration, timeTaken);
+        session.reset();
     }
 
     public void selectQuestionSet(SignSet signSet) {
@@ -120,9 +143,12 @@ public class QuizManager {
         return questionDao.getQuestionSetsWithMarkedCount(session.getLoggedInUser());
     }
 
-    public void markAnswer(int signId) {
+    public void markAnswer(int signId, boolean updatingAnswer) {
         saveMarkedAnswerToDatabase(new Sign(signId));
-        session.setNoOfQuestionsMarked(session.getNoOfQuestionsMarked() + 1);
+
+        if (!updatingAnswer) {
+            session.setNoOfQuestionsMarked(session.getNoOfQuestionsMarked() + 1);
+        }
     }
 
     public void unMarkAnswer() {
@@ -256,6 +282,50 @@ public class QuizManager {
         }
 
         return signSets;
+    }
+
+    private void saveResults() {
+        User loggedInUser = session.getLoggedInUser();
+
+        Map<SignSet, List<Question>> questionsGroupedBySignSet =
+                questionDao.getQuestionsGroupedBySignSet(loggedInUser);
+
+        for (SignSet signSet : questionsGroupedBySignSet.keySet()) {
+            List<Question> questionsInQuestionSet = questionsGroupedBySignSet.get(signSet);
+
+            int answered = 0;
+            int correct = 0;
+            for (Question question : questionsInQuestionSet) {
+                Sign markedSign = question.getMarkedSign();
+                if (markedSign != null) {
+                    answered++;
+
+                    if (markedSign.getId() == question.getSign().getId()) {
+                        correct++;
+                    }
+                }
+            }
+
+            Result result = new Result(loggedInUser, signSet, questionsInQuestionSet.size(), answered, correct);
+            Log.d("TAG", result.toString());
+            try {
+                resultDao.save(result);
+            } catch (SQLException e) {
+                throw new RuntimeException("Cannot save result in database. Application cannot continue.", e);
+            }
+        }
+    }
+
+    private void saveTimeTaken(long totalTime, long timeTaken) {
+        String formattedTotalTime = TimeUtils.getFormattedTime(totalTime);
+        String formattedTimeTaken = TimeUtils.getFormattedTime(timeTaken);
+
+        QuizTime quizTime = new QuizTime(session.getLoggedInUser(), formattedTotalTime, formattedTimeTaken);
+        try {
+            quizTimeDao.save(quizTime);
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot save quiz time in database. Application cannot continue.", e);
+        }
     }
 
 }

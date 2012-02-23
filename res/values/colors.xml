@@ -1,3 +1,4 @@
 <resources>
     <color name="prev_next_navigation_layer_background">#DDDDDD</color>
+    <color name="result_horizontal_rule_background">#FFFFFF</color>
 </resources>

@@ -40,6 +40,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Question.class);
             TableUtils.createTable(connectionSource, Answer.class);
             TableUtils.createTable(connectionSource, Result.class);
+            TableUtils.createTable(connectionSource, QuizTime.class);
         } catch (SQLException e) {
             LOG.error("Error creating database.", e);
         }

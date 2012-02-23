@@ -15,6 +15,7 @@ import com.google.inject.Singleton;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.activity.QuestionActivity;
 import net.incredibles.brtaquiz.util.ForeGroundServiceCompat;
+import net.incredibles.brtaquiz.util.TimeUtils;
 import roboguice.inject.InjectResource;
 import roboguice.service.RoboService;
 
@@ -73,28 +74,14 @@ public class TimerService extends RoboService {
 
         long testDuration = getTestDuration();
         countDownTimer = new RemainingTimeCount(testDuration, TICK_INTERVAL_IN_MILLIS);
-        setLatestEventInfoNotification(getFormattedTime(testDuration));
+        setLatestEventInfoNotification(TimeUtils.getFormattedTime(testDuration));
         countDownTimer.start();
 
         foreGroundServiceCompat.startForeground(SERVICE_ID, notification);
     }
 
     private long getTestDuration() {
-        long timePerQuestionInMillis = Long.parseLong(timePerQuestionInSeconds) * 1000L;
-        long questions = Long.parseLong(noOfQuestions);
-        return timePerQuestionInMillis * questions;
-    }
-
-    public static String getFormattedTime(long timeInMillis) {
-        int hours   = (int) ((timeInMillis / (1000*60*60)) % 24);
-        int minutes = (int) ((timeInMillis / (1000*60)) % 60);
-        int seconds = (int) (timeInMillis / 1000) % 60 ;
-
-        String paddedHours = (hours < 10 ? "0" : "") + hours;
-        String paddedMinutes = (minutes < 10 ? "0" : "") + minutes;
-        String paddedSeconds = (seconds < 10 ? "0" : "") + seconds;
-
-        return paddedHours + ":" + paddedMinutes + ":" + paddedSeconds;
+        return TimeUtils.getTestDuration(Long.parseLong(timePerQuestionInSeconds) * 1000L, Integer.parseInt(noOfQuestions));
     }
 
     private void setLatestEventInfoNotification(String remainingTime) {
@@ -135,7 +122,7 @@ public class TimerService extends RoboService {
         @Override
         public void onTick(long millisUntilFinished) {
             sendMessageToUI(millisUntilFinished);
-            setLatestEventInfoNotification(getFormattedTime(millisUntilFinished));
+            setLatestEventInfoNotification(TimeUtils.getFormattedTime(millisUntilFinished));
             notificationManager.notify(SERVICE_ID, notification);
         }
     }

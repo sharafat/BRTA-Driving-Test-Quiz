@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -204,6 +205,42 @@ public class QuestionDaoImpl implements QuestionDao {
         }
 
         return null;
+    }
+
+    @Override
+    public Map<SignSet, List<Question>> getQuestionsGroupedBySignSet(User user) {
+        Map<SignSet, List<Question>> questionsGroupedBySignSet = new HashMap<SignSet, List<Question>>();
+
+        try {
+            List<Integer> questionSets = getQuestionSetsByUser(user);
+
+            for (int signSetId : questionSets) {
+                SignSet signSet = new SignSet(signSetId);
+                signSetDao.refresh(signSet);
+
+                List<Question> questionsByUserAndSignSet = questionDao.query(questionDao.queryBuilder()
+                        .where().eq("user_id", user.getId()).and().eq("sign_set_id", signSetId).prepare());
+
+                questionsGroupedBySignSet.put(signSet, questionsByUserAndSignSet);
+            }
+
+            return questionsGroupedBySignSet;
+        } catch (SQLException e) {
+            LOG.error("Query exception", e);
+            return null;
+        }
+    }
+
+    private List<Integer> getQuestionSetsByUser(User user) throws SQLException {
+        List<Integer> signSetList = new ArrayList<Integer>();
+
+        String query = "SELECT DISTINCT sign_set_id FROM question WHERE user_id = ?";
+        List<String[]> result = questionDao.queryRaw(query, Integer.toString(user.getId())).getResults();
+        for (String[] row : result) {
+            signSetList.add(Integer.parseInt(row[0]));
+        }
+
+        return signSetList;
     }
 
 }

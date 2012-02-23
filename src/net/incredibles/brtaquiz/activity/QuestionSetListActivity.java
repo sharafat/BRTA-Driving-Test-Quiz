@@ -1,7 +1,6 @@
 package net.incredibles.brtaquiz.activity;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +16,7 @@ import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.QuestionSetListController;
 import net.incredibles.brtaquiz.service.TimerServiceManager;
 import roboguice.activity.RoboListActivity;
+import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
 
 import java.util.List;
@@ -28,10 +28,18 @@ import static net.incredibles.brtaquiz.controller.QuestionSetListController.Ques
  * @Created 2/16/12 6:09 PM
  */
 public class QuestionSetListActivity extends RoboListActivity {
-    @Inject
-    private QuestionSetListController questionSetListController;
     @InjectView(R.id.time_remaining_text_view)
     private TextView timeRemainingTextView;
+    @InjectResource(R.string.questions)
+    private String questions;
+    @InjectResource(R.string.answered)
+    private String answered;
+    @Inject
+    private LayoutInflater layoutInflater;
+
+    @Inject
+    private QuestionSetListController questionSetListController;
+
 
     private List<QuestionSet> questionSets;
     private Handler remainingTimeUpdateHandler;
@@ -50,7 +58,7 @@ public class QuestionSetListActivity extends RoboListActivity {
 
         TimerServiceManager.registerRemainingTimeUpdateHandler(remainingTimeUpdateHandler);
         questionSets = questionSetListController.getQuestionSets();
-        setListAdapter(new QuestionSetListAdapter(this, questionSets));
+        setListAdapter(new QuestionSetListAdapter(questionSets));
     }
 
     @Override
@@ -73,18 +81,15 @@ public class QuestionSetListActivity extends RoboListActivity {
 
 
     private class QuestionSetListAdapter extends ArrayAdapter<QuestionSet> {
-        private Context context;
         private List<QuestionSet> questionSets;
 
-        public QuestionSetListAdapter(Context context, List<QuestionSet> questionSets) {
-            super(context, 0, questionSets);
-            this.context = context;
+        public QuestionSetListAdapter(List<QuestionSet> questionSets) {
+            super(QuestionSetListActivity.this, 0, questionSets);
             this.questionSets = questionSets;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.question_set_list_entry, null);
 
             ImageView imageView = (ImageView) convertView.findViewById(R.id.complete_icon);
@@ -102,8 +107,8 @@ public class QuestionSetListActivity extends RoboListActivity {
         }
 
         private String getQuestionSetDetailsText(QuestionSet questionSet) {
-            return context.getString(R.string.questions) + " " + questionSet.getTotalQuestions() + "   "
-                    + context.getString(R.string.answered) + " " + questionSet.getAnswered();
+            return questions + ": " + questionSet.getTotalQuestions() + "   "
+                    + answered + ": " + questionSet.getAnswered();
         }
     }
 

@@ -34,6 +34,8 @@ public interface QuestionDao {
 
     Map<SignSet, Integer> getQuestionSetsWithQuestionCount(User user);
 
-    Map<SignSet,Integer> getQuestionSetsWithMarkedCount(User user);
+    Map<SignSet, Integer> getQuestionSetsWithMarkedCount(User user);
+
+    Map<SignSet, List<Question>> getQuestionsGroupedBySignSet(User user);
 
 }

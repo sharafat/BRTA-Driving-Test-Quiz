@@ -1,10 +1,10 @@
 <component name="libraryTable">
   <library name="libs_provider">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../BRTA Signs Provider/libs/dbutils-1.0.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../BRTA Signs Provider/libs/slf4j-android-1.6.1-RC1.jar!/" />
+      <root url="file://$PROJECT_DIR$/../BRTA Signs Provider/libs" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../BRTA Signs Provider/libs" recursive="false" />
   </library>
 </component>

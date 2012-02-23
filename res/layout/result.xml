@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="10dip"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:text="@string/result"/>
+
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/result_horizontal_rule_background"/>
+
+    <include layout="@layout/result_entry"/>
+
+    <TableLayout
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:paddingTop="10dp"
+                 android:stretchColumns="1">
+
+        <TableRow
+                android:paddingBottom="3dp">
+
+            <TextView
+                    android:text="@string/total_time"/>
+            <TextView
+                    android:id="@+id/total_time"
+                    android:gravity="right"/>
+
+        </TableRow>
+
+        <TableRow
+                android:paddingBottom="5dp">
+
+            <TextView
+                    android:text="@string/time_taken"/>
+            <TextView
+                    android:id="@+id/time_taken"
+                    android:gravity="right"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/result_horizontal_rule_background"/>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+        <Button
+                android:id="@+id/detailed_result_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/detailed_result"/>
+
+        <Button
+                android:id="@+id/show_chart_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Show Chart"/>
+
+        <Button
+                android:id="@+id/quit_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/quit"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -14,11 +14,11 @@ public class Result {
     @DatabaseField(foreign = true, canBeNull = false, index = true)
     private User user;
 
-    @DatabaseField(columnName = "sign_set_id", foreign = true, canBeNull = false, unique = true, index = true)
+    @DatabaseField(columnName = "sign_set_id", foreign = true, canBeNull = false)
     private SignSet signSet;
 
-    @DatabaseField(columnName = "total_questions", canBeNull = false)
-    private int totalQuestions;
+    @DatabaseField(canBeNull = false)
+    private int questions;
 
     @DatabaseField(canBeNull = false)
     private int answered;
@@ -26,24 +26,15 @@ public class Result {
     @DatabaseField(canBeNull = false)
     private int correct;
 
-    @DatabaseField(columnName = "total_time", canBeNull = false)
-    private String totalTime;
-
-    @DatabaseField(columnName = "time_taken", canBeNull = false)
-    private String timeTaken;
-
     public Result() {
     }
 
-    public Result(User user, SignSet signSet, int totalQuestions, int answered, int correct, String totalTime,
-                  String timeTaken) {
+    public Result(User user, SignSet signSet, int questions, int answered, int correct) {
         this.user = user;
         this.signSet = signSet;
-        this.totalQuestions = totalQuestions;
+        this.questions = questions;
         this.answered = answered;
         this.correct = correct;
-        this.totalTime = totalTime;
-        this.timeTaken = timeTaken;
     }
 
     public int getId() {
@@ -62,8 +53,8 @@ public class Result {
         return signSet;
     }
 
-    public int getTotalQuestions() {
-        return totalQuestions;
+    public int getQuestions() {
+        return questions;
     }
 
     public int getAnswered() {
@@ -74,27 +65,20 @@ public class Result {
         return correct;
     }
 
-    public String getTotalTime() {
-        return totalTime;
-    }
-
-    public String getTimeTaken() {
-        return timeTaken;
-    }
-
     public void setSignSet(SignSet signSet) {
         this.signSet = signSet;
     }
 
-    public void set(User user, SignSet signSet, int totalQuestions, int answered, int correct, String totalTime,
-                    String timeTaken) {
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void set(User user, SignSet signSet, int questions, int answered, int correct) {
         this.user = user;
         this.signSet = signSet;
-        this.totalQuestions = totalQuestions;
+        this.questions = questions;
         this.answered = answered;
         this.correct = correct;
-        this.totalTime = totalTime;
-        this.timeTaken = timeTaken;
     }
 
     @Override
@@ -103,11 +87,9 @@ public class Result {
                 "id=" + id +
                 ", user=" + user +
                 ", signSet=" + signSet +
-                ", totalQuestions=" + totalQuestions +
+                ", questions=" + questions +
                 ", answered=" + answered +
                 ", correct=" + correct +
-                ", totalTime='" + totalTime + '\'' +
-                ", timeTaken='" + timeTaken + '\'' +
                 '}';
     }
 }

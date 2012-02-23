@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:stretchColumns="1">
+
+    <TableRow
+            android:paddingTop="5dp"
+            android:paddingBottom="3dp">
+
+        <TextView
+                android:text="@string/total_questions"/>
+        <TextView
+                android:id="@+id/total_questions"
+                android:gravity="right"/>
+
+    </TableRow>
+
+    <TableRow
+            android:paddingBottom="3dp">
+
+        <TextView
+                android:text="@string/answered"/>
+        <TextView
+                android:id="@+id/answered"
+                android:gravity="right"/>
+
+    </TableRow>
+
+    <TableRow
+            android:paddingBottom="3dp">
+
+        <TextView
+                android:text="@string/correct"/>
+        <TextView
+                android:id="@+id/correct"
+                android:gravity="right"/>
+
+    </TableRow>
+
+    <TableRow
+            android:paddingBottom="3dp">
+
+        <TextView
+                android:text="@string/incorrect"/>
+        <TextView
+                android:id="@+id/incorrect"
+                android:gravity="right"/>
+
+    </TableRow>
+
+    <TableRow
+            android:paddingBottom="5dp">
+
+        <TextView
+                android:text="@string/unanswered"/>
+        <TextView
+                android:id="@+id/unanswered"
+                android:gravity="right"/>
+
+    </TableRow>
+
+</TableLayout>

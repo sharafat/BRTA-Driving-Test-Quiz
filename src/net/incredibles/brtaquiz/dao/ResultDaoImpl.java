@@ -4,6 +4,7 @@ import com.google.inject.Singleton;
 import com.j256.ormlite.dao.Dao;
 import net.incredibles.brtaquiz.domain.Result;
 import net.incredibles.brtaquiz.domain.SignSet;
+import net.incredibles.brtaquiz.domain.User;
 import net.incredibles.brtaquiz.service.DbHelperManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +22,11 @@ public class ResultDaoImpl implements ResultDao {
     private static final Logger LOG = LoggerFactory.getLogger(ResultDaoImpl.class);
 
     private Dao<Result, Integer> resultDao;
+    private Dao<SignSet, Integer> signSetDao;
 
     public ResultDaoImpl() throws SQLException {
         resultDao = DbHelperManager.getHelper().getDao(Result.class);
+        signSetDao = DbHelperManager.getHelper().getDao(SignSet.class);
     }
 
     @Override
@@ -33,20 +36,35 @@ public class ResultDaoImpl implements ResultDao {
     }
 
     @Override
-    public Result getBySignSet(SignSet signSet) {
+    public void save(Result result) throws SQLException {
+        resultDao.createOrUpdate(result);
+
+        boolean newInstance = result.getId() == 0;
+        if (newInstance) {
+            result.setId(resultDao.extractId(result));
+        }
+    }
+
+
+    @Override
+    public List<Result> getByUser(User user){
         Result matchingResult = new Result();
-        matchingResult.setSignSet(signSet);
+        matchingResult.setUser(user);
 
-        try {
-            List<Result> resultList = resultDao.queryForMatchingArgs(matchingResult);
+        try{
+            List<Result> results = resultDao.queryForMatchingArgs(matchingResult);
 
-            if (!resultList.isEmpty()) {
-                return resultList.get(0);
+            for (Result result: results) {
+                signSetDao.refresh(result.getSignSet());
             }
-        } catch (SQLException e) {
+
+            return results;
+        } catch (SQLException e){
             LOG.error("Query exception", e);
         }
 
         return null;
     }
+
+
 }

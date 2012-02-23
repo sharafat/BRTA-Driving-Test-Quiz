@@ -84,14 +84,18 @@ public class QuestionActivity extends RoboActivity {
     private void prepareUI() {
         previouslySelectedRadioButton = null;
 
-        Question question = questionController.getQuestion();
-        displayQuestionSetDetails(question);
-        displayQuestionWithSerial(question);
-        displaySignImage(question);
-        displayAnswers(question);
+        try {
+            Question question = questionController.getQuestion();
+            displayQuestionSetDetails(question);
+            displayQuestionWithSerial(question);
+            displaySignImage(question);
+            displayAnswers(question);
 
-        preparePreviousButton();
-        prepareNextButton();
+            preparePreviousButton();
+            prepareNextButton();
+        } catch (NullPointerException ignore) {
+            // User has pressed back button from result activity and came here. Don't worry, he'll be shown the "Time's Up" dialog shortly... :)
+        }
     }
 
     private void displayQuestionSetDetails(Question question) {
@@ -133,8 +137,9 @@ public class QuestionActivity extends RoboActivity {
                     previouslySelectedRadioButton = null;
                     questionController.unMarkAnswer();
                 } else {
+                    questionController.markAnswer(answersRadioGroup.getCheckedRadioButtonId(),
+                            previouslySelectedRadioButton != null);
                     previouslySelectedRadioButton = clickedRadioButton;
-                    questionController.markAnswer(answersRadioGroup.getCheckedRadioButtonId());
                     if (!questionController.isUserReviewing() && questionController.isAllQuestionsAnswered()) {
                         showDialog(Dialogs.ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG);
                     }

@@ -2,7 +2,10 @@ package net.incredibles.brtaquiz.dao;
 
 import com.google.inject.ImplementedBy;
 import net.incredibles.brtaquiz.domain.Result;
-import net.incredibles.brtaquiz.domain.SignSet;
+import net.incredibles.brtaquiz.domain.User;
+
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author sharafat
@@ -11,6 +14,8 @@ import net.incredibles.brtaquiz.domain.SignSet;
 @ImplementedBy(ResultDaoImpl.class)
 public interface ResultDao {
 
-    Result getBySignSet(SignSet signSet);
+    List<Result> getByUser(User user);
+
+    void save(Result result) throws SQLException;
 
 }

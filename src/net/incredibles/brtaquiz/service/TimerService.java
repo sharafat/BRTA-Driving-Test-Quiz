@@ -21,7 +21,7 @@ import roboguice.service.RoboService;
 
 @Singleton
 public class TimerService extends RoboService {
-    private static final int SERVICE_ID = 8271;
+    public static final int SERVICE_ID = 8271;
     private static final long TICK_INTERVAL_IN_MILLIS = 1000;
 
     public static final String KEY_TIME_PULSE = "KEY_TIME_PULSE";
@@ -30,11 +30,11 @@ public class TimerService extends RoboService {
     public static final int MSG_TIME_PULSE = 3;
     public static final int MSG_TIME_UP = 4;
 
-    @InjectResource(R.string.ticker_text)
+    @InjectResource(R.string.quiz_running_notification_ticker_text)
     private String notificationTickerText;
-    @InjectResource(R.string.notification_title)
+    @InjectResource(R.string.quiz_running_notification_title)
     private String notificationTitle;
-    @InjectResource(R.string.notification_text)
+    @InjectResource(R.string.quiz_running_notification_text)
     private String notificationText;
     @InjectResource(R.string.time_per_question_in_seconds)
     private String timePerQuestionInSeconds;

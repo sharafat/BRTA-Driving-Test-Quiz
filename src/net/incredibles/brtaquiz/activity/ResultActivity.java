@@ -1,5 +1,6 @@
 package net.incredibles.brtaquiz.activity;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.ResultController;
+import net.incredibles.brtaquiz.service.TimerService;
 import net.incredibles.brtaquiz.util.IndefiniteProgressingTask;
 import net.incredibles.brtaquiz.util.PieChart;
 import org.slf4j.Logger;
@@ -57,11 +59,14 @@ public class ResultActivity extends RoboActivity {
     private String unanswered;
 
     @Inject
+    NotificationManager notificationManager;
+    @Inject
     private ResultController resultController;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        notificationManager.cancel(TimerService.SERVICE_ID);
         new PrepareResultTask().execute();
 
         setContentView(R.layout.result);

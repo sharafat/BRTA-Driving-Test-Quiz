@@ -63,7 +63,6 @@ public class QuestionSetListActivity extends RoboListActivity {
     protected void onListItemClick(ListView listView, View view, int position, long id) {
         questionSetListController.selectQuestionSet(questionSets.get(position));
         startActivity(new Intent(this, QuestionActivity.class));
-        finish();
     }
 
     @Override

@@ -2,12 +2,14 @@ package net.incredibles.brtaquiz.controller;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import net.incredibles.brtaquiz.dao.ResultDao;
 import net.incredibles.brtaquiz.dao.UserDao;
+import net.incredibles.brtaquiz.domain.Result;
 import net.incredibles.brtaquiz.domain.User;
-import net.incredibles.brtaquiz.service.QuizManager;
 import net.incredibles.brtaquiz.service.Session;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author sharafat
@@ -18,18 +20,19 @@ public class LoginController {
     @Inject
     private UserDao userDao;
     @Inject
-    private Session session;
+    private ResultDao resultDao;
     @Inject
-    private QuizManager quizManager;
+    private Session session;
 
     /**
      *
      * @param regNo
      * @param pinNo
-     * @return true if the user exists, ie., already taken test; false otherwise
+     * @return true if user exists and has taken exam.
      */
     public boolean login(String regNo, String pinNo) {
         User user = retrieveUser(regNo, pinNo);
+
         boolean existingUser = user != null;
         if (!existingUser) {
             user = createUser(regNo, pinNo);
@@ -37,7 +40,8 @@ public class LoginController {
 
         session.setLoggedInUser(user);
 
-        return existingUser;
+        List<Result> resultList = resultDao.getByUser(user);
+        return resultList != null && resultList.size() > 0;
     }
 
     private User retrieveUser(String regNo, String pinNo) {
@@ -52,10 +56,6 @@ public class LoginController {
         } catch (SQLException e) {
             throw new RuntimeException("Cannot create user in database. Application cannot continue.", e);
         }
-    }
-
-    public void prepareQuiz() {
-        quizManager.prepareQuiz();
     }
 
     UserDao getUserDao() {

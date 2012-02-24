@@ -24,7 +24,8 @@
             android:id="@+id/reg_no_input"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:numeric="integer" />
+            android:inputType="number"
+            android:imeOptions="actionNext"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -36,15 +37,16 @@
             android:id="@+id/pin_no_input"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:numeric="integer" />
+            android:inputType="number"
+            android:imeOptions="actionDone"/>
 
     <Button
-            android:id="@+id/start_test_btn"
+            android:id="@+id/login_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:text="@string/start_test"/>
+            android:text="@string/login"/>
 
 </LinearLayout>

@@ -9,7 +9,6 @@ import android.widget.EditText;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.LoginController;
-import net.incredibles.brtaquiz.service.TimerServiceManager;
 import net.incredibles.brtaquiz.util.IndefiniteProgressingTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,8 +28,8 @@ public class LoginActivity extends RoboActivity {
     private EditText pinNoInput;
     @InjectView(R.id.reg_no_input)
     private EditText regNoInput;
-    @InjectView(R.id.start_test_btn)
-    private Button startTestBtn;
+    @InjectView(R.id.login_btn)
+    private Button loginBtn;
 
     @Inject
     private LoginController loginController;
@@ -38,13 +37,9 @@ public class LoginActivity extends RoboActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        prepare(savedInstanceState);
-    }
 
-    private void prepare(Bundle savedInstanceState) {
-        startTestBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
                 new LoginTask().execute();
             }
@@ -65,54 +60,24 @@ public class LoginActivity extends RoboActivity {
                         }
 
                         @Override
-                        public void onSuccess(Object existingUser) {
-                            if ((Boolean) existingUser) {
+                        public void onSuccess(Object examResultExists) {
+                            if ((Boolean) examResultExists) {
                                 Intent intent = new Intent(LoginActivity.this, ResultActivity.class);
                                 intent.putExtra(KEY_RESULT_ALREADY_SAVED, true);
                                 startActivity(intent);
                                 finish();
                             } else {
-                                new QuizPreparationTask().execute();
+                                startActivity(new Intent(LoginActivity.this, InstructionActivity.class));
                             }
                         }
 
                         @Override
                         public void onException(Exception e) {
-                            logExceptionAndThrowRuntimeException("Login error", e);
+                            LOG.error("Login error", e);
+                            throw new RuntimeException(e);
                         }
                     });
         }
-    }
-
-    private class QuizPreparationTask extends IndefiniteProgressingTask<Void> {
-        public QuizPreparationTask() {
-            super(LoginActivity.this,
-                    getString(R.string.preparing_quiz_questions),
-                    new IndefiniteProgressingTask.OnTaskExecutionListener<Void>() {
-                        @Override
-                        public Void execute() {
-                            loginController.prepareQuiz();
-                            return null;
-                        }
-
-                        @Override
-                        public void onSuccess(Void result) {
-                            TimerServiceManager.startTimerService();
-                            startActivity(new Intent(LoginActivity.this, QuestionSetListActivity.class));
-                            finish();
-                        }
-
-                        @Override
-                        public void onException(Exception e) {
-                            logExceptionAndThrowRuntimeException("Error while preparing quiz", e);
-                        }
-                    });
-        }
-    }
-
-    private void logExceptionAndThrowRuntimeException(String message, Exception e) {
-        LOG.error(message, e);
-        throw new RuntimeException(e);
     }
 
     /**

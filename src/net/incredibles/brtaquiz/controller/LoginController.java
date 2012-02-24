@@ -38,6 +38,7 @@ public class LoginController {
             user = createUser(regNo, pinNo);
         }
 
+        session.reset();
         session.setLoggedInUser(user);
 
         List<Result> resultList = resultDao.getByUser(user);

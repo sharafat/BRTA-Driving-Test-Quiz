@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.ResultController;
+import net.incredibles.brtaquiz.service.Session;
 import net.incredibles.brtaquiz.service.TimerService;
 import net.incredibles.brtaquiz.util.IndefiniteProgressingTask;
 import net.incredibles.brtaquiz.util.PieChart;
@@ -60,9 +61,11 @@ public class ResultActivity extends RoboActivity {
     private String unanswered;
 
     @Inject
-    NotificationManager notificationManager;
+    private NotificationManager notificationManager;
     @Inject
     private ResultController resultController;
+    @Inject
+    private Session session;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -74,8 +74,8 @@ public class InstructionActivity extends RoboActivity {
         int minutes = (totalTimeInSeconds / 60) % 60;
         int seconds = totalTimeInSeconds % 60;
 
-        return (hours != 0 ? hours + " " + hoursText : "")
-                + (minutes != 0 ? minutes + " " + minutesText : "")
+        return (hours != 0 ? hours + " " + hoursText + " " : "")
+                + (hours != 0 ? minutes + " " + minutesText + " " : minutes != 0 ? minutes + " " + minutesText + " " : "")
                 + seconds + " " + secondsText;
     }
 

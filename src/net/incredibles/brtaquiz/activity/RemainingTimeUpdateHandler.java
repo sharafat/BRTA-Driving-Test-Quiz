@@ -10,12 +10,16 @@ import android.os.Message;
 import android.widget.TextView;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.service.TimerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author sharafat
  * @Created 2/22/12 11:23 PM
  */
 class RemainingTimeUpdateHandler extends Handler {
+    private static final Logger LOG = LoggerFactory.getLogger(RemainingTimeUpdateHandler.class);
+
     private Activity activity;
     private TextView textView;
 
@@ -35,15 +39,10 @@ class RemainingTimeUpdateHandler extends Handler {
                 activity.removeDialog(Dialogs.ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG);
                 activity.removeDialog(Dialogs.ID_JUMP_TO_QUESTION_DIALOG);
 
-                if (activity.hasWindowFocus()) {
-                    try {
-                        activity.showDialog(Dialogs.ID_TIME_UP_DIALOG);
-                    } catch (Exception e) {
-                        // The user is at home screen or using other applications.
-                        pushQuizCompleteNotification();
-                    }
-                } else {
-                    // The user is at home screen or using other applications.
+                try {
+                    activity.showDialog(Dialogs.ID_TIME_UP_DIALOG);
+                } catch (Exception e) {
+                    LOG.error("Time up dialog can't be displayed.", e);
                     pushQuizCompleteNotification();
                 }
 

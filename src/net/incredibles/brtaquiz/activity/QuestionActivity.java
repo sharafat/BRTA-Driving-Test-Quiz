@@ -196,7 +196,13 @@ public class QuestionActivity extends RoboActivity {
                     questionController.markAnswer(answersRadioGroup.getCheckedRadioButtonId(),
                             previouslySelectedRadioButton != null);
                     if (!questionController.isUserReviewing() && questionController.isAllQuestionsAnswered()) {
-                        showDialog(Dialogs.ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG);
+                        nextBtn.setText(R.string.finish);
+                        nextBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showDialog(Dialogs.ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG);
+                            }
+                        });
                     }
 
                     if (previouslySelectedRadioButton == null) {

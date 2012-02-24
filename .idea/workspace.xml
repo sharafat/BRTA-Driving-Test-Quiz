@@ -14,13 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c8d22202-ea23-47aa-b072-2ef8e551a546" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/login.xml" afterPath="$PROJECT_DIR$/res/layout/login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/provider/ResultProvider.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/provider/ResultProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/net/incredibles/brtaquiz/activity/LoginActivityTest.java" afterPath="$PROJECT_DIR$/test/net/incredibles/brtaquiz/activity/LoginActivityTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/project.properties" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/project.properties" />
@@ -139,8 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/PieChart.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/ResultActivity.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/ResultController.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/RemainingTimeUpdateHandler.java" />
@@ -155,6 +147,8 @@
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/Dialogs.java" />
       </list>
     </option>
   </component>
@@ -866,17 +860,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="25" width="1374" height="721" extended-state="7" />
+    <frame x="-4" y="25" width="1374" height="721" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47469458" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19499241" sideWeight="0.6701571" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809773" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3982456" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5037936" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809773" sideWeight="0.50682855" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -886,11 +881,10 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28528073" sideWeight="0.67190224" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809773" sideWeight="0.4908953" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809773" sideWeight="0.48786038" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44677138" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809773" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -985,20 +979,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../BRTA Signs Provider/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/question_set_list.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="4" selection-start="1106" selection-end="1431" vertical-scroll-proportion="0.57586837">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="13" selection-start="660" selection-end="660" vertical-scroll-proportion="0.31368822">
@@ -1009,13 +989,6 @@
     <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/DbHelperManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="42" selection-start="421" selection-end="421" vertical-scroll-proportion="0.34220532">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="354" selection-start="524" selection-end="524" vertical-scroll-proportion="0.14619882">
           <folding />
         </state>
       </provider>
@@ -1095,6 +1068,29 @@
     <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="62" column="69" selection-start="2076" selection-end="2076" vertical-scroll-proportion="0.4494382">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="24" selection-start="1542" selection-end="1548" vertical-scroll-proportion="0.33202356">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="0" selection-start="2972" selection-end="2972" vertical-scroll-proportion="0.66179156">
+          <folding>
+            <element signature="e#12036#12066#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/Dialogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="52" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.54844606">
           <folding />
         </state>
       </provider>

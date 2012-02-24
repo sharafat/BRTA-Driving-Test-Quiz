@@ -32,9 +32,12 @@ class RemainingTimeUpdateHandler extends Handler {
                 break;
             case TimerService.MSG_TIME_UP:
                 activity.removeDialog(Dialogs.ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG);
-                if (activity.hasWindowFocus()) {
+                activity.removeDialog(Dialogs.ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG);
+                activity.removeDialog(Dialogs.ID_JUMP_TO_QUESTION_DIALOG);
+
+                try {
                     activity.showDialog(Dialogs.ID_TIME_UP_DIALOG);
-                } else {
+                } catch (Exception e) {
                     // The user is at home screen or using other applications.
 
                     /* The following code should've started the result activity even if the application is not on focus.

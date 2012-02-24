@@ -147,7 +147,8 @@ public class QuestionActivity extends RoboActivity {
             preparePreviousButton();
             prepareNextButton();
         } catch (NullPointerException ignore) {
-            // User has pressed back button from result activity and came here. Don't worry, he'll be shown the "Time's Up" dialog shortly... :)
+            // User has pressed back button from Result activity and came here. Don't worry, he'll be shown the "Time's Up" dialog shortly... :)
+            // Update: Back button from Result activity has been handled to do nothing. So, program flow shouldn't come here now.
         }
     }
 

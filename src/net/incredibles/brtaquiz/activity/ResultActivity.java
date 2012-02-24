@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -113,12 +114,17 @@ public class ResultActivity extends RoboActivity {
         quitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                showLauncherScreen();
+                finish();
             }
         });
+    }
+
+    private void showLauncherScreen() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 
@@ -146,5 +152,33 @@ public class ResultActivity extends RoboActivity {
                         }
                     });
         }
+    }
+
+    /**
+     * The primary purpose is to prevent systems before android.os.Build.VERSION_CODES.ECLAIR
+     * from calling their default KeyEvent.KEYCODE_BACK during onKeyDown.
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //preventing default implementation previous to android.os.Build.VERSION_CODES.ECLAIR
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /** Overrides the default implementation for KeyEvent.KEYCODE_BACK so that all systems call onBackPressed(). */
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
+    /** If a Child Activity handles KeyEvent.KEYCODE_BACK. Simply override and add this method. */
+    private void onBackPressed() {
+        //Do nothing...
     }
 }

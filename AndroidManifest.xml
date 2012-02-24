@@ -25,6 +25,10 @@
                   android:authorities="net.incredibles.brtaprovider"
                   android:readPermission="net.incredibles.brtaprovider.READ_BRTA_SIGNS"/>
 
+        <provider android:name=".provider.ResultProvider"
+                  android:authorities="net.incredibles.brtaquiz"
+                  android:readPermission="net.incredibles.brtaquiz.READ_BRTA_QUIZ_RESULTS"/>
+
     </application>
 
 </manifest>

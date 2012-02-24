@@ -116,17 +116,10 @@ public class ResultActivity extends RoboActivity {
         quitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLauncherScreen();
+                startActivity(new Intent(ResultActivity.this, LoginActivity.class));
                 finish();
             }
         });
-    }
-
-    private void showLauncherScreen() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
     }
 
 

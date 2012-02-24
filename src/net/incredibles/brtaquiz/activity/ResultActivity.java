@@ -13,7 +13,6 @@ import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.ResultController;
 import net.incredibles.brtaquiz.service.Session;
 import net.incredibles.brtaquiz.service.TimerService;
-import net.incredibles.brtaquiz.util.IndefiniteProgressingTask;
 import net.incredibles.brtaquiz.util.PieChart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,14 +68,11 @@ public class ResultActivity extends RoboActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.result);
 
         notificationManager.cancel(TimerService.SERVICE_ID);
 
-        boolean resultAlreadySaved = getIntent().getBooleanExtra(LoginActivity.KEY_RESULT_ALREADY_SAVED, false);
-
-        new PrepareResultTask(resultAlreadySaved).execute();
-
-        setContentView(R.layout.result);
+        updateUI();
         setButtonClickHandlers();
     }
 
@@ -125,32 +121,6 @@ public class ResultActivity extends RoboActivity {
         });
     }
 
-
-    private class PrepareResultTask extends IndefiniteProgressingTask<Void> {
-
-        public PrepareResultTask(final boolean resultAlreadySaved) {
-            super(ResultActivity.this,
-                    preparingResult,
-                    new OnTaskExecutionListener<Void>() {
-                        @Override
-                        public Void execute() {
-                            resultController.prepareResult(resultAlreadySaved);
-                            return null;
-                        }
-
-                        @Override
-                        public void onSuccess(Void result) {
-                            updateUI();
-                        }
-
-                        @Override
-                        public void onException(Exception e) {
-                            LOG.error("Error while preparing result", e);
-                            throw new RuntimeException(e);
-                        }
-                    });
-        }
-    }
 
     /**
      * The primary purpose is to prevent systems before android.os.Build.VERSION_CODES.ECLAIR

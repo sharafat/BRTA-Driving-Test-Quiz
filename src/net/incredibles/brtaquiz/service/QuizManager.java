@@ -84,8 +84,7 @@ public class QuizManager {
                 Integer.parseInt(noOfQuestionsFromConfig));
     }
 
-    public void prepareResult() {
-        long timeTaken = TimerServiceManager.stopTimerService();
+    public void prepareResult(long timeTaken) {
         saveResults();
         saveTimeTaken(testDuration, timeTaken);
         session.reset();
@@ -130,10 +129,6 @@ public class QuizManager {
 
     public boolean isLastQuestionInCurrentSet(Question question) {
         return questionDao.getNextQuestion(question) == null;
-    }
-
-    public boolean isLastQuestionInTotalExam() {
-        return questionDao.getUnansweredQuestions(session.getLoggedInUser()).size() == 1;
     }
 
     public int getQuestionCountInCurrentQuestionSet() {

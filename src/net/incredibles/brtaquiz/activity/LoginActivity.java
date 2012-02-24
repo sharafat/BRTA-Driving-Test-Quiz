@@ -9,6 +9,8 @@ import android.widget.EditText;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.LoginController;
+import net.incredibles.brtaquiz.controller.ResultController;
+import net.incredibles.brtaquiz.service.PrepareResultTask;
 import net.incredibles.brtaquiz.util.IndefiniteProgressingTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,8 @@ public class LoginActivity extends RoboActivity {
 
     @Inject
     private LoginController loginController;
+    @Inject
+    private ResultController resultController;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +66,7 @@ public class LoginActivity extends RoboActivity {
                         @Override
                         public void onSuccess(Object examResultExists) {
                             if ((Boolean) examResultExists) {
-                                Intent intent = new Intent(LoginActivity.this, ResultActivity.class);
-                                intent.putExtra(KEY_RESULT_ALREADY_SAVED, true);
-                                startActivity(intent);
-                                finish();
+                                new PrepareResultTask(LoginActivity.this, resultController).execute();
                             } else {
                                 startActivity(new Intent(LoginActivity.this, InstructionActivity.class));
                             }

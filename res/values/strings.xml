@@ -5,9 +5,9 @@
     <string name="welcome">Welcome To\nBRTA Driving Test Quiz</string>
     <string name="instruction_msg">&#8226; There will be %1$s questions and a total time of %2$s.&lt;br/>&lt;br/>&#8226; Once started, you must complete the test.&lt;br/>&lt;br/>&#8226; If you get out of the program after starting the test, then you can get back in by tapping on the program notification icon from the status bar.&lt;br/>&lt;br/>&lt;br/>Best of luck!</string>
     <string name="start_test">Start Test</string>
-    <string name="hours">Hours</string>
-    <string name="minutes">Minutes</string>
-    <string name="seconds">Seconds</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds">seconds</string>
 
     <!-- Login -->
     <string name="reg_no">Registration No.</string>
@@ -17,7 +17,7 @@
     <string name="preparing_quiz_questions">Preparing Quiz Questions...</string>
 
     <!-- Question Set List -->
-    <string name="choose_question_set">Choose question set</string>
+    <string name="question_sets">Question sets</string>
     <string name="questions">Questions</string>
     <string name="answered">Answered</string>
     <string name="time_remaining_with_colon">Time Remaining:</string>

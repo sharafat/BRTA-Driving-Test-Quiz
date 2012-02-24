@@ -55,12 +55,13 @@ class RemainingTimeUpdateHandler extends Handler {
 
     private void pushQuizCompleteNotification() {
         /* The following code should've started the result activity even if the application is not on focus.
-* However, instead of starting the activity, the following warning is found in Logcat:
-* WARN/ActivityManager(68): Activity start request from 10026 stopped
 *
 * Intent intent = new Intent();
 * intent.setClassName("net.incredibles.brtaquiz", "net.incredibles.brtaquiz.activity.ResultActivity");
 * activity.startActivity(intent);
+*
+* However, instead of starting the activity, the following warning is found in Logcat:
+* WARN/ActivityManager(68): Activity start request from 10026 stopped
 *
 * So, instead, I'm showing a notification message to notify the user of the end of quiz test. Clicking on it will show the result.
 */
@@ -68,9 +69,7 @@ class RemainingTimeUpdateHandler extends Handler {
                 (NotificationManager) activity.getSystemService(Activity.NOTIFICATION_SERVICE);
         Notification quizCompleteNotification = new Notification(R.drawable.ic_launcher,
                 activity.getString(R.string.quiz_finished_notification_ticker_text), System.currentTimeMillis());
-        Intent intent = new Intent(activity, ResultActivity.class);
-        intent.putExtra(LoginActivity.KEY_RESULT_ALREADY_SAVED, false);
-        PendingIntent pendingIntent = PendingIntent.getActivity(activity, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(activity, 0, new Intent(activity, ResultActivity.class), 0);
         quizCompleteNotification.setLatestEventInfo(activity,
                 activity.getText(R.string.quiz_finished_notification_title),
                 activity.getText(R.string.quiz_finished_notification_text), pendingIntent);

@@ -31,10 +31,6 @@ public class QuestionController {
         return quizManager.isLastQuestionInCurrentSet(quizManager.currentQuestion());
     }
 
-    public boolean isLastQuestionInTotalExam() {
-        return quizManager.isLastQuestionInTotalExam();
-    }
-
     public int getQuestionCountInCurrentQuestionSet() {
         return quizManager.getQuestionCountInCurrentQuestionSet();
     }

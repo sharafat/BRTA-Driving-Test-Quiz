@@ -13,9 +13,11 @@ import android.widget.*;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.QuestionController;
+import net.incredibles.brtaquiz.controller.ResultController;
 import net.incredibles.brtaquiz.domain.Answer;
 import net.incredibles.brtaquiz.domain.Question;
 import net.incredibles.brtaquiz.domain.Sign;
+import net.incredibles.brtaquiz.service.PrepareResultTask;
 import net.incredibles.brtaquiz.service.TimerServiceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,6 +62,8 @@ public class QuestionActivity extends RoboActivity {
     private LayoutInflater layoutInflater;
     @Inject
     private QuestionController questionController;
+    @Inject
+    private ResultController resultController;
 
     private JumpToQuestionDialog jumpToQuestionDialog;
     private RadioButton previouslySelectedRadioButton;
@@ -107,8 +111,7 @@ public class QuestionActivity extends RoboActivity {
                 return true;
             case R.id.menu_finish_test:
                 if (questionController.isAllQuestionsAnswered()) {
-                    startActivity(new Intent(this, ResultActivity.class));
-                    finish();
+                    new PrepareResultTask(this, resultController).execute();
                 } else {
                     showDialog(Dialogs.ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG);
                 }
@@ -122,11 +125,11 @@ public class QuestionActivity extends RoboActivity {
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case Dialogs.ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG:
-                return Dialogs.createReviewOrSubmitConfirmationDialog(this, questionController);
+                return Dialogs.createReviewOrSubmitConfirmationDialog(this, questionController, resultController);
             case Dialogs.ID_TIME_UP_DIALOG:
-                return Dialogs.createTimeUpDialog(this);
+                return Dialogs.createTimeUpDialog(this, resultController);
             case Dialogs.ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG:
-                return Dialogs.createFinishingWithIncompleteAnswersConfirmationDialog(this);
+                return Dialogs.createFinishingWithIncompleteAnswersConfirmationDialog(this, resultController);
             case Dialogs.ID_JUMP_TO_QUESTION_DIALOG:
                 return jumpToQuestionDialog;
             default:
@@ -137,19 +140,14 @@ public class QuestionActivity extends RoboActivity {
     private void prepareUI() {
         previouslySelectedRadioButton = null;
 
-        try {
-            Question question = questionController.getQuestion();
-            displayQuestionSetDetails(question);
-            displayQuestionWithSerial(question);
-            displaySignImage(question);
-            displayAnswers(question);
+        Question question = questionController.getQuestion();
+        displayQuestionSetDetails(question);
+        displayQuestionWithSerial(question);
+        displaySignImage(question);
+        displayAnswers(question);
 
-            preparePreviousButton();
-            prepareNextButton();
-        } catch (NullPointerException ignore) {
-            // User has pressed back button from Result activity and came here. Don't worry, he'll be shown the "Time's Up" dialog shortly... :)
-            // Update: Back button from Result activity has been handled to do nothing. So, program flow shouldn't come here now.
-        }
+        preparePreviousButton();
+        prepareNextButton();
     }
 
     private void displayQuestionSetDetails(Question question) {

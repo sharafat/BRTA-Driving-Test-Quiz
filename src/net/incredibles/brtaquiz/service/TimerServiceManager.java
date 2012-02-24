@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.os.*;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
+import net.incredibles.brtaquiz.controller.ResultController;
 import net.incredibles.brtaquiz.util.TimeUtils;
 import roboguice.inject.InjectResource;
 
@@ -23,6 +24,10 @@ public class TimerServiceManager {
 
     @Inject
     private static Application application;
+    @Inject
+    private static QuizManager quizManager;
+    @Inject
+    private static ResultController resultController;
 
     private static TimerServiceManager instance;
     private static Handler timeTickCallbackHandler;
@@ -57,18 +62,10 @@ public class TimerServiceManager {
         }
     }
 
-    public static long stopTimerService() {
-        long remainingTime = 0;
-
+    public static void stopTimerService() {
         if (instance != null) {
-            remainingTime = instance.remainingTime;
             instance.doUnbindService();
-            instance = null;
         }
-
-        long testDuration = TimeUtils.getTestDuration(Long.parseLong(timePerQuestionInSeconds) * 1000L,
-                Integer.parseInt(noOfQuestions));
-        return testDuration - remainingTime;
     }
 
     public static void registerRemainingTimeUpdateHandler(Handler callbackHandler) {
@@ -100,6 +97,14 @@ public class TimerServiceManager {
 
         // Detach our existing connection.
         application.unbindService(serviceConnection);
+
+        long testDuration = TimeUtils.getTestDuration(Long.parseLong(timePerQuestionInSeconds) * 1000L,
+                Integer.parseInt(noOfQuestions));
+        quizManager.prepareResult(testDuration - remainingTime);
+
+        resultController.prepareResult();
+
+        instance = null;
     }
 
 
@@ -120,7 +125,6 @@ public class TimerServiceManager {
                     break;
                 case TimerService.MSG_TIME_UP:
                     doUnbindService();
-                    instance = null;
 
                     relayMsg.what = TimerService.MSG_TIME_UP;
 

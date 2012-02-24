@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.QuestionController;
+import net.incredibles.brtaquiz.controller.ResultController;
+import net.incredibles.brtaquiz.service.PrepareResultTask;
 
 /**
  * @author sharafat
@@ -19,7 +20,8 @@ public class Dialogs {
     public static final int ID_JUMP_TO_QUESTION_DIALOG = 4;
 
     public static Dialog createReviewOrSubmitConfirmationDialog(final QuestionActivity questionActivity,
-                                                                final QuestionController questionController) {
+                                                                final QuestionController questionController,
+                                                                final ResultController resultController) {
         return new AlertDialog.Builder(questionActivity)
                 .setCancelable(false)
                 .setIcon(R.drawable.ic_launcher)
@@ -38,15 +40,14 @@ public class Dialogs {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                questionActivity.startActivity(new Intent(questionActivity, ResultActivity.class));
                                 questionActivity.removeDialog(ID_REVIEW_OR_SUBMIT_CONFIRMATION_DIALOG);
-                                questionActivity.finish();
+                                new PrepareResultTask(questionActivity, resultController).execute();
                             }
                         })
                 .create();
     }
 
-    public static Dialog createTimeUpDialog(final Activity activity) {
+    public static Dialog createTimeUpDialog(final Activity activity, final ResultController resultController) {
         return new AlertDialog.Builder(activity)
                 .setCancelable(false)
                 .setIcon(R.drawable.ic_launcher)
@@ -56,15 +57,15 @@ public class Dialogs {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                activity.startActivity(new Intent(activity, ResultActivity.class));
                                 activity.removeDialog(ID_TIME_UP_DIALOG);
-                                activity.finish();
+                                new PrepareResultTask(activity, resultController).execute();
                             }
                         })
                 .create();
     }
 
-    public static Dialog createFinishingWithIncompleteAnswersConfirmationDialog(final Activity activity) {
+    public static Dialog createFinishingWithIncompleteAnswersConfirmationDialog(final Activity activity,
+                                                                                final ResultController resultController) {
         return new AlertDialog.Builder(activity)
                 .setCancelable(false)
                 .setIcon(R.drawable.ic_launcher)
@@ -81,9 +82,8 @@ public class Dialogs {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                activity.startActivity(new Intent(activity, ResultActivity.class));
                                 activity.removeDialog(ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG);
-                                activity.finish();
+                                new PrepareResultTask(activity, resultController).execute();
                             }
                         })
                 .create();

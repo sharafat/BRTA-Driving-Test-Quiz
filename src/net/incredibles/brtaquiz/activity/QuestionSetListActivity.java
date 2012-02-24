@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.google.inject.Inject;
 import net.incredibles.brtaquiz.R;
 import net.incredibles.brtaquiz.controller.QuestionSetListController;
+import net.incredibles.brtaquiz.controller.ResultController;
+import net.incredibles.brtaquiz.service.PrepareResultTask;
 import net.incredibles.brtaquiz.service.TimerServiceManager;
 import roboguice.activity.RoboListActivity;
 import roboguice.inject.InjectResource;
@@ -37,6 +39,8 @@ public class QuestionSetListActivity extends RoboListActivity {
 
     @Inject
     private QuestionSetListController questionSetListController;
+    @Inject
+    private ResultController resultController;
 
 
     private List<QuestionSet> questionSets;
@@ -76,8 +80,7 @@ public class QuestionSetListActivity extends RoboListActivity {
         switch (item.getItemId()) {
             case R.id.menu_finish_test:
                 if (questionSetListController.isAllQuestionsAnswered()) {
-                    startActivity(new Intent(this, ResultActivity.class));
-                    finish();
+                    new PrepareResultTask(this, resultController).execute();
                 } else {
                     showDialog(Dialogs.ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG);
                 }
@@ -91,9 +94,9 @@ public class QuestionSetListActivity extends RoboListActivity {
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case Dialogs.ID_TIME_UP_DIALOG:
-                return Dialogs.createTimeUpDialog(this);
+                return Dialogs.createTimeUpDialog(this, resultController);
             case Dialogs.ID_FINISHING_WITH_INCOMPLETE_ANSWERS_CONFIRMATION_DIALOG:
-                return Dialogs.createFinishingWithIncompleteAnswersConfirmationDialog(this);
+                return Dialogs.createFinishingWithIncompleteAnswersConfirmationDialog(this, resultController);
             default:
                 return null;
         }

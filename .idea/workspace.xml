@@ -14,12 +14,19 @@
   <component name="ChangeListManager">
     <list default="true" id="c8d22202-ea23-47aa-b072-2ef8e551a546" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/result.xml" afterPath="$PROJECT_DIR$/res/layout/result.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/config.xml" afterPath="$PROJECT_DIR$/res/values/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/InstructionActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/InstructionActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/detailed_result.xml" afterPath="$PROJECT_DIR$/res/layout/detailed_result.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/question_set_list.xml" afterPath="$PROJECT_DIR$/res/layout/question_set_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/Dialogs.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/Dialogs.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionSetListActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionSetListActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/RemainingTimeUpdateHandler.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/RemainingTimeUpdateHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/ResultActivity.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/ResultActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/QuestionController.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/QuestionController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/ResultController.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/ResultController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/TimerServiceManager.java" afterPath="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/TimerServiceManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/BRTA Signs Provider.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BRTA Signs Provider/project.properties" afterPath="$PROJECT_DIR$/../BRTA Signs Provider/project.properties" />
@@ -105,35 +112,7 @@
     <favorites_list name="BRTA Driving Test Quiz" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ResultActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/ResultActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="33" selection-start="2656" selection-end="2656" vertical-scroll-proportion="0.5466179">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResultController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/ResultController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="16" selection-start="909" selection-end="909" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="53" selection-start="1875" selection-end="1875" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -151,22 +130,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/res/layout/result.xml" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/ResultController.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/QuestionController.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/RemainingTimeUpdateHandler.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/PrepareAndDisplayResultTask.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/TimerServiceManager.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/provider/ResultContract.java" />
-        <option value="$PROJECT_DIR$/res/layout/instructions.xml" />
-        <option value="$PROJECT_DIR$/res/layout/login.xml" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/provider/ResultProvider.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionSetListActivity.java" />
+        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/PrepareResultTask.java" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/Dialogs.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/RemainingTimeUpdateHandler.java" />
-        <option value="$PROJECT_DIR$/res/values/config.xml" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/InstructionActivity.java" />
-        <option value="$PROJECT_DIR$/res/layout/result.xml" />
+        <option value="$PROJECT_DIR$/res/layout/question_set_list.xml" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/ResultActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/detailed_result.xml" />
       </list>
     </option>
   </component>
@@ -879,7 +858,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="25" width="1374" height="721" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47469458" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
@@ -898,8 +877,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28528073" sideWeight="0.5532286" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809773" sideWeight="0.4848255" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28528073" sideWeight="0.67190224" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32809773" sideWeight="0.4848255" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44677138" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -997,116 +976,118 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/android-sdk-linux-r15/sources/android-14/android/os/Handler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="380" column="25" selection-start="15294" selection-end="15294" vertical-scroll-proportion="0.33272395">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="50" selection-start="170" selection-end="170" vertical-scroll-proportion="0.08226691">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/RemainingTimeUpdateHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1424" selection-end="1424" vertical-scroll-proportion="0.13711151">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/TimerServiceManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="33" selection-start="2702" selection-end="2702" vertical-scroll-proportion="0.44241315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="53" selection-start="2741" selection-end="2741" vertical-scroll-proportion="0.27422303">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/SharedPreferencesWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="19" selection-start="600" selection-end="600" vertical-scroll-proportion="0.33147633">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="12" selection-start="885" selection-end="885" vertical-scroll-proportion="0.49860725">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="24" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.54038996">
+        <state line="40" column="24" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.28702012">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/QuizManager.java">
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/util/IndefiniteProgressingTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="18" selection-start="3122" selection-end="3122" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/InstructionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="15" selection-start="3161" selection-end="3161" vertical-scroll-proportion="0.7369942">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/result_entry.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/result.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="17" selection-start="498" selection-end="498" vertical-scroll-proportion="0.5849582">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/detailed_result.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="40" selection-end="281" vertical-scroll-proportion="0.08356546">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="53" selection-start="1875" selection-end="1875" vertical-scroll-proportion="0.0">
+        <state line="15" column="47" selection-start="444" selection-end="444" vertical-scroll-proportion="0.19822486">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/controller/ResultController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="16" selection-start="909" selection-end="909" vertical-scroll-proportion="0.0">
+        <state line="30" column="16" selection-start="807" selection-end="807" vertical-scroll-proportion="0.82729805">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/TimerServiceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="23" selection-start="2209" selection-end="2209" vertical-scroll-proportion="0.7075209">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/RemainingTimeUpdateHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="76" selection-start="2738" selection-end="2738" vertical-scroll-proportion="0.41504177">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/InstructionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="32" selection-start="1323" selection-end="1323" vertical-scroll-proportion="0.4768786">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/service/PrepareResultTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="42" selection-start="1359" selection-end="1359" vertical-scroll-proportion="0.5612431">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="20" selection-start="3910" selection-end="3910" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/QuestionSetListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="20" selection-start="2748" selection-end="2748" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="46" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/question_set_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="42" selection-start="1417" selection-end="1417" vertical-scroll-proportion="0.80798477">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/detailed_result.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="39" selection-start="476" selection-end="476" vertical-scroll-proportion="0.5325444">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/ResultActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="33" selection-start="2656" selection-end="2656" vertical-scroll-proportion="0.5466179">
+        <state line="38" column="11" selection-start="1273" selection-end="1273" vertical-scroll-proportion="0.8356546">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="32" selection-start="2353" selection-end="2353" vertical-scroll-proportion="0.33236995">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/incredibles/brtaquiz/activity/Dialogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="26" selection-start="2464" selection-end="2464" vertical-scroll-proportion="0.46242774">
           <folding />
         </state>
       </provider>

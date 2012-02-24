@@ -7,7 +7,6 @@ import net.incredibles.brtaquiz.dao.ResultDao;
 import net.incredibles.brtaquiz.domain.QuizTime;
 import net.incredibles.brtaquiz.domain.Result;
 import net.incredibles.brtaquiz.domain.User;
-import net.incredibles.brtaquiz.service.QuizManager;
 import net.incredibles.brtaquiz.service.Session;
 
 import java.util.List;
@@ -19,8 +18,6 @@ import java.util.List;
 @Singleton
 public class ResultController {
     @Inject
-    private QuizManager quizManager;
-    @Inject
     private Session session;
     @Inject
     private ResultDao resultDao;
@@ -31,11 +28,7 @@ public class ResultController {
     private int totalQuestions, answered, correct;
     private String totalTime, timeTaken;
 
-    public void prepareResult(boolean resultAlreadySaved) {
-        if (!resultAlreadySaved) {
-            quizManager.prepareResult();
-        }
-
+    public void prepareResult() {
         User loggedInUser = session.getLoggedInUser();
 
         totalQuestions = answered = correct = 0;

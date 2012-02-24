@@ -37,14 +37,13 @@ public class LoginControllerTest {
 
     @Test
     public void testLogin_ForExistingUser() throws SQLException {
-        User user = new User(SAMPLE_REG_NO, SAMPLE_PIN_NO);
-        userDao.save(user);
+        User expected = new User(SAMPLE_REG_NO, SAMPLE_PIN_NO);
+        userDao.save(expected);
 
         boolean success = loginController.login(SAMPLE_REG_NO, SAMPLE_PIN_NO);
         assertThat(success, is(false));
 
         User actual = session.getLoggedInUser();
-        User expected = new User("", "");
         assertThat(actual.toString(), equalTo(expected.toString()));
     }
 
@@ -56,7 +55,7 @@ public class LoginControllerTest {
         assertThat(expected, nullValue());
 
         boolean success = loginController.login(SAMPLE_REG_NO, SAMPLE_PIN_NO);
-        assertThat(success, is(true));
+        assertThat(success, is(false));
 
         expected = userDao.getByRegistrationAndPinNo(SAMPLE_REG_NO, SAMPLE_PIN_NO);
         assertThat(expected, notNullValue());

@@ -38,6 +38,8 @@ public class ResultController {
 
         User loggedInUser = session.getLoggedInUser();
 
+        totalQuestions = answered = correct = 0;
+
         resultList = resultDao.getByUser(loggedInUser);
         for (Result result : resultList) {
             totalQuestions += result.getQuestions();

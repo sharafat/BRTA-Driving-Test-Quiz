@@ -54,8 +54,9 @@ class RemainingTimeUpdateHandler extends Handler {
                             (NotificationManager) activity.getSystemService(Activity.NOTIFICATION_SERVICE);
                     Notification quizCompleteNotification = new Notification(R.drawable.ic_launcher,
                             activity.getString(R.string.quiz_finished_notification_ticker_text), System.currentTimeMillis());
-                    PendingIntent pendingIntent = PendingIntent.getActivity(activity, 0,
-                            new Intent(activity, ResultActivity.class), 0);
+                    Intent intent = new Intent(activity, ResultActivity.class);
+                    intent.putExtra(LoginActivity.KEY_RESULT_ALREADY_SAVED, true);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(activity, 0, intent, 0);
                     quizCompleteNotification.setLatestEventInfo(activity,
                             activity.getText(R.string.quiz_finished_notification_title),
                             activity.getText(R.string.quiz_finished_notification_text), pendingIntent);

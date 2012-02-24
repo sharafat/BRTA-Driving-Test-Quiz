@@ -68,7 +68,10 @@ public class ResultActivity extends RoboActivity {
         super.onCreate(savedInstanceState);
 
         notificationManager.cancel(TimerService.SERVICE_ID);
-        new PrepareResultTask().execute();
+
+        boolean resultAlreadySaved = getIntent().getBooleanExtra(LoginActivity.KEY_RESULT_ALREADY_SAVED, false);
+
+        new PrepareResultTask(resultAlreadySaved).execute();
 
         setContentView(R.layout.result);
         setButtonClickHandlers();
@@ -130,13 +133,13 @@ public class ResultActivity extends RoboActivity {
 
     private class PrepareResultTask extends IndefiniteProgressingTask<Void> {
 
-        public PrepareResultTask() {
+        public PrepareResultTask(final boolean resultAlreadySaved) {
             super(ResultActivity.this,
                     preparingResult,
                     new OnTaskExecutionListener<Void>() {
                         @Override
                         public Void execute() {
-                            resultController.prepareResult();
+                            resultController.prepareResult(resultAlreadySaved);
                             return null;
                         }
 

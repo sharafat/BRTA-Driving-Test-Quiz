@@ -22,15 +22,22 @@ public class LoginController {
     @Inject
     private QuizManager quizManager;
 
+    /**
+     *
+     * @param regNo
+     * @param pinNo
+     * @return true if the user exists, ie., already taken test; false otherwise
+     */
     public boolean login(String regNo, String pinNo) {
         User user = retrieveUser(regNo, pinNo);
-        if (user != null) {
-            return false;
+        boolean existingUser = user != null;
+        if (!existingUser) {
+            user = createUser(regNo, pinNo);
         }
 
-        user = createUser(regNo, pinNo);
         session.setLoggedInUser(user);
-        return true;
+
+        return existingUser;
     }
 
     private User retrieveUser(String regNo, String pinNo) {

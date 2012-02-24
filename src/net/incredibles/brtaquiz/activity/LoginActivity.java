@@ -1,7 +1,5 @@
 package net.incredibles.brtaquiz.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -24,6 +22,7 @@ import roboguice.inject.InjectView;
  * @Created 2/16/12 2:11 PM
  */
 public class LoginActivity extends RoboActivity {
+    public static final String KEY_RESULT_ALREADY_SAVED = "result_already_prepared";
     private static final Logger LOG = LoggerFactory.getLogger(LoginActivity.class);
 
     @InjectView(R.id.pin_no_input)
@@ -66,20 +65,14 @@ public class LoginActivity extends RoboActivity {
                         }
 
                         @Override
-                        public void onSuccess(Object result) {
-                            if ((Boolean) result) {
-                                new QuizPreparationTask().execute();
+                        public void onSuccess(Object existingUser) {
+                            if ((Boolean) existingUser) {
+                                Intent intent = new Intent(LoginActivity.this, ResultActivity.class);
+                                intent.putExtra(KEY_RESULT_ALREADY_SAVED, true);
+                                startActivity(intent);
+                                finish();
                             } else {
-                                //TODO: Following is just a dummy. Show exam result instead
-                                new AlertDialog.Builder(LoginActivity.this)
-                                        .setMessage("User already exists.")
-                                        .setPositiveButton("OK",
-                                                new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        dialog.dismiss();
-                                                    }
-                                                }).create().show();
+                                new QuizPreparationTask().execute();
                             }
                         }
 

@@ -31,8 +31,10 @@ public class ResultController {
     private int totalQuestions, answered, correct;
     private String totalTime, timeTaken;
 
-    public void prepareResult() {
-        quizManager.prepareResult();
+    public void prepareResult(boolean resultAlreadySaved) {
+        if (!resultAlreadySaved) {
+            quizManager.prepareResult();
+        }
 
         User loggedInUser = session.getLoggedInUser();
 

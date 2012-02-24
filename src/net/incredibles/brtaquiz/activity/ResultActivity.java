@@ -109,8 +109,7 @@ public class ResultActivity extends RoboActivity {
                 pieChart.setCOMPUTING_PARAMETER(computingParameters);
                 pieChart.setGraphTitle(result);
 
-                //TODO: Correct classCastException problem and uncomment the following
-//                startActivity(pieChart.execute(ResultActivity.this));
+                startActivity(pieChart.execute(ResultActivity.this));
             }
         });
 

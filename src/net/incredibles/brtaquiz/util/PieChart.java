@@ -63,7 +63,7 @@ public class PieChart {
 	/**
 	 * Builds a category series using the provided values.
 	 *
-	 * @param titles the series titles
+	 * @param title the series titles
 	 * @param values the values
 	 * @return the category series
 	 */
